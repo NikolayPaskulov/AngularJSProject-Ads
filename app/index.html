@@ -13,8 +13,29 @@
 	<script type="text/javascript" src="scripts/libs/jquery.noty.js"></script>
 </head>
 <body ng-app="Ads">
-	<div id="main-wrapper">
-
+	<div id="main-wrapper" ng-controller="MainCtrl as mainCtrl">
+		<header>
+			<div>Ads – Home</div>
+			<div ng-show="mainCtrl.userS.isLoggedIn">
+				<p ng-bind="mainCtrl.userS.user.name"></p>
+			</div>
+		</header>
+		<aside>
+			<div>
+				<div>Navigation</div>
+				<div><a href="#/">Home</a></div>
+				<div ng-show="mainCtrl.userS.isLoggedIn">
+					<div><a href="#/">My Ads</a></div>
+					<div><a href="#/">Publish New Ad</a></div>
+					<div><a href="#/">Edit Profile</a></div>
+				</div>
+			</div>
+			<div ng-hide="mainCtrl.userS.isLoggedIn">
+				<div>To publish a new <br>ad, please login.</div>
+				<div><button>Login</button></div>
+				<div><button>Register</button></div>
+			</div>
+		</aside>
 		<div ng-view></div>
 	</div>
 
