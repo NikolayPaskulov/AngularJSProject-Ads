@@ -1,14 +1,99 @@
 /* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
 
-
-body { 
-}
-
 div {
 	display:inline-block;
 }
 
 body * {
 	box-sizing:border-box;
+}
+
+#main-wrapper, #main-wrapper > header, #main-wrapper > footer {
+	width:100%;
+	display:inline-block;
+}
+#main-wrapper > header, #main-wrapper > footer {
+	text-align: center;
+    background: #a9d18e;
+    border: 1px solid #507e32;
+    min-width: 750px;
+}
+
+#main-wrapper > header > div:first-child, #main-wrapper > footer > div:first-child{
+	font-size: 25px;
+	font-weight: bold;
+	margin: 5px 0 5px 0;
+}
+
+#main-wrapper > aside {
+	width:16%;
+	min-width:213px;
+	display:inline-block;
+	margin: 15px 2% 20px 2%;
+}
+
+#main-wrapper > aside > div, #home-view > #filters > div{
+	width:100%;
+	background: #a9d18e;
+    border: 1px solid #507e32;
+    margin-top: 15px;
+}
+
+#main-wrapper > aside > div > div, #home-view > #filters > div > div {
+	margin-left: 10%;
+	margin-right:10%;
+	width:80%;
+}
+
+#main-wrapper > aside > div > div:first-child,
+#home-view > #filters > div > div:first-child  {
+	font-size:23px;
+	text-align: center;
+	font-weight: bold;
+	border-bottom: 2px solid #507e32;
+	padding: 10px 0 10px 0;
+}
+
+#main-wrapper > aside > div > div > a,
+#home-view > #filters > div > div > div > div:first-child {
+	display:inline-block;
+	width:100%;
+	padding: 10px 0 10px 15px;
+	margin: 3px 0 3px 0;
+	text-decoration: none;
+	font-size:20px;
+	color:black;
+	border:1px solid #a9d18e;
+
+}
+#main-wrapper > aside > div > div > a:hover, 
+#main-wrapper > aside > div > div > button:hover,
+#home-view > #filters > div > div > div > div:first-child:hover,
+#main-wrapper > aside > div > div > a:active, 
+#main-wrapper > aside > div > div > button:active,
+#home-view > #filters > div > div > div > div:first-child:active
+{
+	background: #daa600;
+    border:1px solid #7f6000;
+}
+
+#main-wrapper > aside > div > div:last-child  {
+	margin-bottom: 10px;
+}
+
+#main-wrapper > aside > div > div > button {
+	padding: 10px 0 10px 2px;
+	margin: 3px 0 3px 0;
+	width:100%;
+	background: #70ad47;
+    border: 1px solid #639045;
+    color:white;
+	font-size:20px;
+	border-radius: 10px;
+}
+
+#ng-view {
+	width:79%;
+	float:right;
 }
