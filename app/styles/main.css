@@ -68,10 +68,8 @@ body * {
 
 }
 #main-wrapper > aside > div > div > a:hover, 
-#main-wrapper > aside > div > div > button:hover,
+#main-wrapper > aside > div > div > a:hover,
 #home-view > #filters > div > div > div > div:first-child:hover,
-#main-wrapper > aside > div > div > a:active, 
-#main-wrapper > aside > div > div > button:active,
 #home-view > #filters > div > div > div > div:first-child:active
 {
 	background: #daa600;
@@ -82,7 +80,7 @@ body * {
 	margin-bottom: 10px;
 }
 
-#main-wrapper > aside > div > div > button {
+#main-wrapper > aside > div:nth-child(2) > div > a {
 	padding: 10px 0 10px 2px;
 	margin: 3px 0 3px 0;
 	width:100%;
@@ -91,6 +89,7 @@ body * {
     color:white;
 	font-size:20px;
 	border-radius: 10px;
+	text-align: center;
 }
 
 #ng-view {

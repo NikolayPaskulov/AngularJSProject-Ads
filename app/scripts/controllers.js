@@ -40,3 +40,11 @@ angular.module('Ads')
   .controller('PageCtrl', [function(){
     
   }])
+  .controller('LoginCtrl', [function(){
+    
+  }])
+  .controller('RegisterCtrl', [function(){
+    
+  }])
+  
+  

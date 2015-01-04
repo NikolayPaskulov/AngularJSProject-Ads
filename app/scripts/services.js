@@ -2,10 +2,13 @@ angular.module('Ads')
   .factory('RESTRequester', ['$http',
     function($http) {
       var baseURL = 'http://localhost:1337/api/',
-          pageSize = 5;
+          pageSize = 4;
       var User = {
         login : function(username,password) {
           return $http.post(baseURL + 'user/Login', { username : username, password : password});
+        },
+        register: function (data) {
+          return $http.post(baseURL + 'user/Register', data);
         }
       }
       var get = {
