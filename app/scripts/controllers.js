@@ -1,7 +1,12 @@
 angular.module('Ads')
   .controller('MainCtrl', ['UserService',
    function(UserService){
-    this.userS = UserService;
+    var self = this;
+    self.user = UserService;
+
+    self.logout = function() {
+      UserService.logout();
+    }
   }])
   .controller('HomeCtrl', ['RESTRequester', 
     function(RESTRequester){
@@ -40,11 +45,58 @@ angular.module('Ads')
   .controller('PageCtrl', [function(){
     
   }])
-  .controller('LoginCtrl', [function(){
-    
+  .controller('LoginCtrl', ['UserService','RESTRequester',
+    function(UserService, RESTRequester){
+      var self = this;
+      self.user = {};
+
+      self.submit = function() {
+        RESTRequester.User.login(self.user)
+          .success(function(data) {
+            UserService.login(data);
+          })
+          .error(function(data) {
+            //NOTY .. TODO!
+          });
+      }
+
   }])
-  .controller('RegisterCtrl', [function(){
-    
+  .controller('RegisterCtrl', ['UserService','RESTRequester',
+    function(UserService, RESTRequester){
+      var self = this;
+      self.user = {};
+      self.towns = [{ id : 0, name : ''}];
+
+      RESTRequester.get.towns()
+        .success(function(data) { 
+          self.towns = self.towns.concat(data);
+          $('#reg-towns')[0].innerHTML = fillSelect(self.towns);
+        }).
+        error(function(data) {
+          //NOTY .. TODO!
+        });
+
+      self.submit = function() {
+        var select = $('#reg-towns')[0];
+        if(select.value != 0) {
+          self.user.townId = select.value
+        } 
+        RESTRequester.User.register(self.user)
+          .success(function(data) {
+            console.log(data)
+            UserService.login(data)
+          })
+          .error(function(data) {
+            //NOTY .. TODO!
+          });
+      }
+      function fillSelect(arr) {
+        var optionArray = [];
+        for(var i = 0; i < arr.length; i++) {
+          optionArray.push('<option value="'+ arr[i].id +'">'+ arr[i].name +'</option>')
+        }
+        return optionArray.join('');
+      }
   }])
   
   

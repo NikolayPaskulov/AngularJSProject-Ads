@@ -4,8 +4,8 @@ angular.module('Ads')
       var baseURL = 'http://localhost:1337/api/',
           pageSize = 4;
       var User = {
-        login : function(username,password) {
-          return $http.post(baseURL + 'user/Login', { username : username, password : password});
+        login : function(user) {
+          return $http.post(baseURL + 'user/Login', user);
         },
         register: function (data) {
           return $http.post(baseURL + 'user/Register', data);
@@ -26,19 +26,23 @@ angular.module('Ads')
         User : User,
         get : get
       }
-  }])
-  .factory('UserService', ['RESTRequester', function(RESTRequester) {
-    var service = {
-      isLoggedIn: false,
-      user : {},
+  }]) 
+  .factory('UserService', ['RESTRequester', '$location',
+    function(RESTRequester, $location) {
+      var service = {
+        isLoggedIn: false,
+        user : {},
 
-      login: function(user) {
-        return $http.post('/api/login', user)
-          .then(function(response) {
-            service.isLoggedIn = true;
-            return response;
-        });
-      }
-    };
-    return service;
+        login: function(user) {
+          this.isLoggedIn = true;
+          this.user = user;
+          $location.path('/');
+        },
+        logout: function() {
+          this.isLoggedIn = false;
+          this.user = {};
+          $location.path('/');
+        }
+      };
+      return service;
   }]);
