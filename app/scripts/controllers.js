@@ -19,31 +19,19 @@ angular.module('Ads')
       RESTRequester.get.ads('')
         .success(function(data) { 
           self.ads = data.ads;
-        }).
-        error(function(data) {
-          //NOTY .. TODO!
-        });
+        })
 
       //GET ALL TOWNS
       RESTRequester.get.towns()
         .success(function(data) { 
           self.towns = self.towns.concat(data);
-        }).
-        error(function(data) {
-          //NOTY .. TODO!
-        });
+        })
 
       //GET ALL CATEGORIES
       RESTRequester.get.categories()
         .success(function(data) { 
           self.categories = self.categories.concat(data);
-        }).
-        error(function(data) {
-          //NOTY .. TODO!
-        });
-  }])
-  .controller('PageCtrl', [function(){
-    
+        })
   }])
   .controller('LoginCtrl', ['UserService','RESTRequester',
     function(UserService, RESTRequester){
@@ -55,9 +43,6 @@ angular.module('Ads')
           .success(function(data) {
             UserService.login(data);
           })
-          .error(function(data) {
-            //NOTY .. TODO!
-          });
       }
 
   }])
@@ -71,10 +56,7 @@ angular.module('Ads')
         .success(function(data) { 
           self.towns = self.towns.concat(data);
           $('#reg-towns')[0].innerHTML = fillSelect(self.towns);
-        }).
-        error(function(data) {
-          //NOTY .. TODO!
-        });
+        })
 
       self.submit = function() {
         var select = $('#reg-towns')[0];
@@ -83,7 +65,6 @@ angular.module('Ads')
         } 
         RESTRequester.User.register(self.user)
           .success(function(data) {
-            console.log(data)
             UserService.login(data)
           })
           .error(function(data) {
@@ -97,6 +78,20 @@ angular.module('Ads')
         }
         return optionArray.join('');
       }
+  }])
+  .controller('UserAds', ['RESTRequester','UserService',
+   function(RESTRequester, UserService){
+    var self = this;
+    self.ads = [];
+    console.log(UserService.user.access_token)
+    RESTRequester.User.ads('', UserService.user.access_token)
+      .success(function(data) {
+        self.ads = data;
+      });
+  }])
+  .controller('NewAdCtrl', ['RESTRequester','UserService', 
+    function(RESTRequester, UserService){
+    
   }])
   
   

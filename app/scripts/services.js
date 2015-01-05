@@ -9,6 +9,10 @@ angular.module('Ads')
         },
         register: function (data) {
           return $http.post(baseURL + 'user/Register', data);
+        },
+        ads : function(filters, token) {
+          return $http.post(baseURL + 'user/Ads?PageSize='+ pageSize +'' + filters,
+            { Authorization: 'Bearer ' + token});
         }
       }
       var get = {
@@ -34,6 +38,7 @@ angular.module('Ads')
         user : {},
 
         login: function(user) {
+          console.log(user)
           this.isLoggedIn = true;
           this.user = user;
           $location.path('/');
@@ -45,4 +50,4 @@ angular.module('Ads')
         }
       };
       return service;
-  }]);
+  }])

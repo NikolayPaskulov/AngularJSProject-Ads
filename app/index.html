@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="styles/ad.css">
     <link rel="stylesheet" type="text/css" href="styles/register.css">
     <link rel="stylesheet" type="text/css" href="styles/login.css">
+    <link rel="stylesheet" type="text/css" href="styles/newAdForm.css">
 
 	<script type="text/javascript" src="scripts/libs/angular.min.js"></script>
 	<script type="text/javascript" src="scripts/libs/angular-route.js"></script>
@@ -31,8 +32,8 @@
 			<div>
 				<div>Navigation</div>
 				<div><a href="#/">Home</a></div>
-				<div ng-show="mainCtrl.user.isLoggedIn"><a href="#/">My Ads</a></div>
-				<div ng-show="mainCtrl.user.isLoggedIn"><a href="#/">Publish New Ad</a></div>
+				<div ng-show="mainCtrl.user.isLoggedIn"><a href="#/user/ads">My Ads</a></div>
+				<div ng-show="mainCtrl.user.isLoggedIn"><a href="#/user/newAd">Publish New Ad</a></div>
 				<div ng-show="mainCtrl.user.isLoggedIn"><a href="#/">Edit Profile</a></div>
 			</div>
 			<div ng-hide="mainCtrl.user.isLoggedIn">

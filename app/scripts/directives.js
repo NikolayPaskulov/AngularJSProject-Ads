@@ -15,3 +15,13 @@ angular.module('Ads')
 		}
 	};
 }])
+.directive('userAd', [function(){
+	return {
+		scope: {
+			data: '=',
+		},
+		replace: true,
+		restrict: 'AE',
+		templateUrl: 'directives/userAd.html',
+	};
+}])

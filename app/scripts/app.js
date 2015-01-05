@@ -12,6 +12,30 @@ angular.module('Ads', ['ngRoute'])
       templateUrl: 'views/register.html',
       controller : 'RegisterCtrl as regCtrl'
     })
+    .when('/user/ads', {
+      templateUrl: 'views/userAds.html',
+      controller : 'UserAds as userAds',
+      resolve: {
+        auth: ['$location', 'UserService',
+          function($location, UserService) {
+            if(!UserService.user.username) {
+              $location.path('/login')
+            }
+        }]
+      }
+    })
+    .when('/user/newAd', {
+      templateUrl: 'views/publishNewAd.html',
+      controller : 'NewAdCtrl as newAdCtrl',
+      resolve: {
+        auth: ['$location', 'UserService',
+          function($location, UserService) {
+            if(!UserService.user.username) {
+              $location.path('/login')
+            }
+        }]
+      }
+    })
     $routeProvider.otherwise({
       redirectTo: '/'
     });

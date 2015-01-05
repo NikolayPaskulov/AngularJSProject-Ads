@@ -1,0 +1,13 @@
+<div id="userAds-holder">
+	<select>
+		<option value="-1">All</option>
+		<option value="2">Published</option>
+		<option value="1">Waiting Approval</option>
+		<option value="0">Inactive</option>
+		<option value="3">Rejected</option>
+	</select>
+
+	<div ng-repeat="ad in userAds.ads">
+		<userAd data="ad" />
+	</div>
+</div>
