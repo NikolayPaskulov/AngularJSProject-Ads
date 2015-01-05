@@ -1,0 +1,70 @@
+<div id="reg-holder">
+	<div>User Registration</div>
+	<form ng-submit="regCtrl.submit()" name="regForm">
+		<div>
+			<label for="uname">Username:</label>
+			<input type="text"
+				   id="uname"
+				   name="uname"
+				   ng-model="regCtrl.user.username"
+				   required
+				   ng-minlength="2"
+				   placeholder="Username">
+		</div>
+		<div>
+		 	<label for="config-pass">Confirm Password:</label>
+			<input type="password"
+				   id="conf-pass"
+				   nama="conf-pass"
+				   required
+				   ng-model="regCtrl.user.confirmPassword"
+				   placeholder="Confirm Password">
+		</div>
+		<div>
+			<label for="upass">Password:</label>
+			<input type="password"
+				   id="upass"
+				   name="upass"
+				   ng-model="regCtrl.user.password"
+				   required
+				   ng-minlength="2"
+				   ng-maxlength="100"
+				   placeholder="Password">
+		</div>
+		<div>
+			<label for="config-pass">Email:</label>
+			<input type="email"
+				   id="email"
+				   nama="email"
+				   required
+				   ng-model="regCtrl.user.email"
+				   placeholder="Email">
+		</div>
+		<div>
+			<label for="name">Name:</label>
+			<input type="text"
+				   id="name"
+				   name="name"
+				   ng-model="regCtrl.user.name"
+				   required
+				   ng-minlength="2"
+				   placeholder="Name">
+		</div>
+		<div>
+			<label>Town:</label>
+			<select id="reg-towns"></select>
+		</div>
+		<div>
+			<label for="phone">Phone:</label>
+			<input type="text"
+				   id="phone"
+				   ng-model="regCtrl.user.phone"
+				   placeholder="Phone">
+		</div>
+		<div>
+			<input type="submit"
+				   value="Register"
+				   ng-disabled="myForm.$invalid">
+		</div>
+	</form>
+</div>

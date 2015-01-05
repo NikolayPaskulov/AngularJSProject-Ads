@@ -1,0 +1,83 @@
+.ad-holder, .ad-holder > div {
+	width:100%;
+}
+
+.ad-holder {
+	margin-top:20px;
+}
+
+.ad-holder {
+	background: #a9d18e;
+	border:1px solid #507e32;
+}
+
+.ad-body > .img-conteiner {
+	width:30%;
+	float:left;
+	margin: 20px 5% 20px 5%;
+}
+
+.ad-body {
+	margin-bottom: 30px;
+}
+
+.ad-body > .ad-info {
+	width:59%;
+	float:left;
+
+}
+
+.ad-body > .ad-info > div {
+	width:100%;
+}
+
+.img-conteiner {
+	margin-top:20px;
+}
+
+.img-conteiner > img {
+	width: 66%;
+	height:120px;
+	margin: 20px 17% 20px 17%;
+}
+
+.ad-text {
+	margin-top:20px;
+}
+
+.ad-text > p {
+	padding: 10px
+}
+
+.ad-text, .img-conteiner, .ad-name > div:nth-child(2),
+.ad-email > div:nth-child(2), .ad-phone > div:nth-child(2) {
+	background: #c5e0b4;
+    border:1px dotted #649b3f
+}
+
+.ad-info > div > div:first-child {
+	width:15%;
+}
+
+.ad-info > div > div:nth-child(2) {
+	width:83.6%;
+}
+
+.ad-info > div > div:first-child, .ad-info > div > div:nth-child(2) {
+	padding: 3px;
+	margin: 5px 0 5px 0;
+}
+.ad-header > div {
+	font-size:20px;
+	font-weight: bold;
+	margin-top:10px;
+}
+
+.ad-header > div:first-child {
+	width:75%;
+	margin-left:2%;
+}
+
+.ad-header > div:nth-child(2) {
+	width:22%;
+}

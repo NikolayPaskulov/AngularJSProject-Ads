@@ -1,0 +1,31 @@
+<div id="login-holder">
+	<div>Login</div>
+	<form ng-submit="loginCtrl.submit()" name="regForm">
+		<div>
+			<label for="uname">Username:</label>
+			<input type="text"
+				   id="uname"
+				   name="uname"
+				   ng-model="loginCtrl.user.username"
+				   required
+				   ng-minlength="2"
+				   placeholder="Username">
+		</div>
+		<div>
+			<label for="upass">Password:</label>
+			<input type="password"
+				   id="upass"
+				   name="upass"
+				   ng-model="loginCtrl.user.password"
+				   required
+				   ng-minlength="2"
+				   ng-maxlength="100"
+				   placeholder="Password">
+		</div>
+		<div>
+			<input type="submit"
+				   value="Login"
+				   ng-disabled="myForm.$invalid">
+		</div>
+	</form>
+</div>

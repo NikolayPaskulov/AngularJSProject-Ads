@@ -1,0 +1,26 @@
+<div class="ad-holder">
+	<div class="ad-header">
+		<div ng-bind="data.title"></div>
+		<div ng-bind="isoToDate(data.date)"></div>
+	</div>
+	<div class="ad-body">
+		<div class="img-conteiner">
+			<img ng-src="{{data.imageDataUrl || 'img/NoImgAvailable.png'}}" >
+		</div>
+		<div class="ad-info">
+			<div class="ad-text"><p ng-bind="data.text"></p></div>
+			<div class="ad-name">
+				<div>Name:</div>
+				<div><p ng-bind="data.ownerName"></p></div>
+			</div>
+			<div class="ad-email">
+				<div>Email:</div>
+				<div><p ng-bind="data.ownerEmail"></p></div>
+			</div>
+			<div class="ad-phone">
+				<div>Tel:</div>
+				<div><p ng-bind="data.ownerPhone"></p></div>
+			</div>
+		</div>
+	</div>
+</div>
