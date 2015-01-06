@@ -81,3 +81,49 @@
 .ad-header > div:nth-child(2) {
 	width:22%;
 }
+
+.user-ad-holder {
+	width:80%;
+}
+
+.user-ad-holder > .ad-body {
+	border-right:1px solid green;
+}
+
+.user-ad-holder > div:first-child {
+	width:70%;
+	float:left;
+}
+
+.user-ad-holder > div:nth-child(2) {
+	width:30%;
+	float:left;
+	margin-top:15px;
+}
+
+.user-ad-holder > div > div {
+	width:100%;
+	margin: 5px;
+}
+
+.user-ad-holder .btn, .user-ad-holder > div:nth-child(2) > div:nth-child(2) {
+	margin-left: 10%;
+	margin-right: 10%;
+	width: 80%;
+}
+
+.user-ad-holder > div:nth-child(2) > div:first-child,
+.user-ad-holder > div:nth-child(2) > div:nth-child(2) {
+	font-size:20px;
+	text-align: center;
+}
+
+.user-ad-holder > div:nth-child(2) > div:nth-child(2) {
+	padding: 3px;
+	background: #c5e0b4;
+	border: 1px dotted #649b3f;
+}
+
+#userAds-holder > .user-ad-holder:first-child {
+	margin-top:11px;
+}

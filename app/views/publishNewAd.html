@@ -1,11 +1,36 @@
-<div id="newAdForm">
-	<div>Publish New Ad</div>
-	<div>
-		<div>Title:</div>
-		<div><input type="text" ng-model="newAdCtrl.ad.title" /></div>
-	</div>
-		<div>
-		<div>Text:</div>
-		<div><input type="text" ng-model="newAdCtrl.ad.text" /></div>
-	</div>
+<div id="newAd">
+    <div>Publish New Ad</div>
+    <div>
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" ng-model="newAdCtrl.adData.title" required />
+        </div>
+        <div>
+            <label for="text">Text:</label>
+            <textarea id="text" ng-model="newAdCtrl.adData.text" required draggable="false"></textarea>
+        </div>
+    </div>
+    <div class="image-box"></div>
+    <div>
+        <label for="image">Image:</label>
+        <input type="text" id="image" />
+        <input type="file"
+               onchange="angular.element(this).scope().fileSelected(this)" />
+    </div>
+    <div>
+        <label for="category">Category:</label>
+        <select id="category" ng-model="newAdCtrl.adData.categoryId">
+            <option ng-repeat="c in newAdCtrl.categories" value="c.id" ng-bind="c.name"></option>
+        </select>
+    </div>
+    <div>
+        <label for="town">Town:</label>
+        <select id="town" ng-model="newAdCtrl.adData.townId">
+            <option ng-repeat="town in newAdCtrl.towns" ng-value="town.id" ng-bind="town.name"></option>
+        </select>
+    </div>
+    <div>
+        <a ng-click="newAdCtrl.publishAd()" class="btn">Publish</a>
+        <a href="#/user/ads" class="btn">Cancel</a>
+    </div>
 </div>

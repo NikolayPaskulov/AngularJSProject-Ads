@@ -1,22 +1,14 @@
 <div id="home-view">
 	<div id="filters-controler">Filters</div>
 	<div id="ads-holder">
-		<div ng-repeat="ad in homeCtrl.ads">
-			<ad data="ad"></ad>
-		</div>
+		<ad ng-repeat="ad in homeCtrl.ads" data="ad"></ad>
 	</div>
 	<div id="filters" style="display:none;">
 		<div>
 			<div>Categories</div>
-			<div ng-repeat="category in homeCtrl.categories">
-				<div><div ng-bind="category.name"></div><div ng-bind="category.id"></div></div>
-			</div>
 		</div>
 		<div>
 			<div>Towns</div>
-			<div ng-repeat="town in homeCtrl.towns">
-				<div><div ng-bind="town.name"></div><div ng-bind="town.id"></div></div>
-			</div>
 		</div>
 	</div>
 </div>

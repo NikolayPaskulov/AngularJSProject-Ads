@@ -10,9 +10,9 @@ angular.module('Ads')
         register: function (data) {
           return $http.post(baseURL + 'user/Register', data);
         },
-        ads : function(filters, token) {
-          return $http.post(baseURL + 'user/Ads?PageSize='+ pageSize +'' + filters,
-            { Authorization: 'Bearer ' + token});
+        getAds : function(filters, token) {
+          return $http.get(baseURL + 'user/Ads?PageSize='+ pageSize +'' + filters,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
         }
       }
       var get = {
@@ -34,8 +34,8 @@ angular.module('Ads')
   .factory('UserService', ['RESTRequester', '$location',
     function(RESTRequester, $location) {
       var service = {
-        isLoggedIn: false,
-        user : {},
+        isLoggedIn: true,
+        user : {username: "admin"},
 
         login: function(user) {
           console.log(user)

@@ -52,7 +52,9 @@
 		</div>
 		<div>
 			<label>Town:</label>
-			<select id="reg-towns"></select>
+			<select id="reg-towns" ng-model="regCtrl.user.townId" >
+				<option ng-repeat="town in regCtrl.towns" ng-value="town.id" ng-bind="town.name"></option>
+			</select>
 		</div>
 		<div>
 			<label for="phone">Phone:</label>

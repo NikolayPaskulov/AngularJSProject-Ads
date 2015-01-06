@@ -103,7 +103,7 @@ button {
 #main-wrapper > aside > div > div > a:hover, 
 #main-wrapper > aside > div > div > a:hover,
 #home-view > #filters > div > div > div > div:first-child:hover,
-#home-view > #filters > div > div > div > div:first-child:active
+#home-view > #filters > div > div > div > div:first-child:active, .btn:hover
 {
 	background: #daa600;
     border:1px solid #7f6000;
@@ -113,7 +113,7 @@ button {
 	margin-bottom: 10px;
 }
 
-#main-wrapper > aside > div:nth-child(2) > div > a {
+.btn {
 	padding: 10px 0 10px 2px;
 	margin: 3px 0 3px 0;
 	width:100%;

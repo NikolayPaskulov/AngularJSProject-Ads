@@ -1,3 +1,35 @@
-<div class="userAd">
-	<ad data="data"/>
+<div class="ad-holder user-ad-holder">
+	<div>
+		<div class="ad-header">
+			<div ng-bind="data.title"></div>
+			<div ng-bind="isoToDate(data.date)"></div>
+		</div>
+		<div class="ad-body">
+			<div class="img-conteiner">
+				<img ng-src="{{data.imageDataUrl || 'img/NoImgAvailable.png'}}" >
+			</div>
+			<div class="ad-info">
+				<div class="ad-text"><p ng-bind="data.text"></p></div>
+				<div class="ad-name">
+					<div>Category:</div>
+					<div><p ng-bind="data.categoryName || '&nbsp;'"></p></div>
+				</div>
+				<div class="ad-email">
+					<div>Town:</div>
+					<div><p ng-bind="data.townName || '&nbsp;'"></p></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="ad-status">
+		<div>Status:</div>
+		<div ng-bind="data.status"></div>
+		<button ng-show="data.status == 'WaitingApproval' || data.status == 'Published'" class="btn" ng-click="deactivateBtn(data.id)">Deactivate</button>
+		<div ng-show="data.status == 'Inactive'">
+			<button class="btn">Edit</button>
+			<button class="btn">Publish Again</button>	
+			<button class="btn">Delete</button>		
+		</div>
+	</div>
+	<div style="display:none;" ng-bind="data.id"></div>
 </div>

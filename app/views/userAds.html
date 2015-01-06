@@ -6,8 +6,5 @@
 		<option value="0">Inactive</option>
 		<option value="3">Rejected</option>
 	</select>
-
-	<div ng-repeat="ad in userAds.ads">
-		<userAd data="ad" />
-	</div>
+	<userad	 ng-repeat="ad in userAds.ads" data="ad" deactivate="userAds.deactivate(id)" />
 </div>

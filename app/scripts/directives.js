@@ -2,7 +2,7 @@ angular.module('Ads')
 .directive('ad', [function(){
 	return {
 		scope: {
-			data: '=',
+			data: '='
 		},
 		replace: true,
 		restrict: 'AE',
@@ -15,13 +15,23 @@ angular.module('Ads')
 		}
 	};
 }])
-.directive('userAd', [function(){
+.directive('userad', [function(){
 	return {
 		scope: {
 			data: '=',
+			deactivate : '&'
 		},
 		replace: true,
 		restrict: 'AE',
 		templateUrl: 'directives/userAd.html',
+		link: function(scope, element, attrs) {
+			scope.isoToDate = function(str) {
+        		var d = new Date(str).toDateString().split(' ').slice(1);
+       			 return  d[1] + '-' + d[0] + '-' + d[2];
+			},
+			scope.deactivateBtn = function(id) {
+				scope.deactivate({id : id})
+			}
+		}
 	};
 }])
