@@ -12,8 +12,8 @@ angular.module('Ads')
     function(RESTRequester){
       var self = this;
       self.ads = [];
-      self.towns = [{ id : 0, name : 'All'}];
-      self.categories = [{ id : 0, name : 'All'}];
+      self.towns = [{ id : 0, name : '(None)'}];
+      self.categories = [{ id : 0, name : '(None)'}];
 
       //GET ALL ADS
       RESTRequester.get.ads('')
@@ -50,7 +50,7 @@ angular.module('Ads')
     function(UserService, RESTRequester){
       var self = this;
       self.user = {};
-      self.towns = [{ id : 0, name : 'All'}];
+      self.towns = [{ id : 0, name : '(None)'}];
 
       RESTRequester.get.towns()
         .success(function(data) { 
@@ -69,8 +69,8 @@ angular.module('Ads')
           });
       }
   }])
-  .controller('UserAds', ['RESTRequester','UserService',
-   function(RESTRequester, UserService){
+  .controller('UserAds', ['RESTRequester','UserService', '$route','$routeScope'
+   function(RESTRequester, UserService,$route){
     var self = this;
     self.ads = [];
 
@@ -80,32 +80,46 @@ angular.module('Ads')
       });
 
     self.deactivate = function(id) {
-
+      RESTRequester.User.deactivateAd(id,UserService.user.access_token)
+        .success(function(data) {
+          $route.reload()
+          console.log(data)
+          //TODO NOTY
+        })
+        .error(function(data) {
+          //TODO NOTY
+        })
+    }
+    self.delete = function(id) {
+      console.log(id)
     }
 
   }])
-  .controller('NewAdCtrl', ['RESTRequester','UserService', '$scope',
-    function(RESTRequester, UserService, $scope){
+  .controller('NewAdCtrl', ['RESTRequester', 'UserService', '$scope', '$location',
+    function(RESTRequester, UserService, $scope, $location){
       var self = this;
       self.adData = {townId: null, categoryId: null};
-      self.towns = [{ id : 0, name : 'All'}];
-      self.categories = [{ id : 0, name : 'All'}];
+      self.towns = [{ id : null, name : '(None)'}];
+      self.categories = [{ id : 0, name : '(None)'}];
 
-      //GET ALL ADS
+
       RESTRequester.get.towns()
         .success(function(data) { 
           self.towns = self.towns.concat(data);
         })
 
-      //GET ALL ADS
       RESTRequester.get.categories()
         .success(function(data) { 
           self.categories = self.categories.concat(data);
         })
 
+      RESTRequester.User.profile(UserService.user.access_token)
+        .success(function(data) {
+          self.user = data
+        })
+
         $scope.fileSelected = function(fileInputField) {
             delete self.adData.imageDataUrl;
-            console.log(fileInputField.value)
             var file = fileInputField.files[0];
             if (file.type.match(/image\/.*/)) {
                 var reader = new FileReader();
@@ -120,7 +134,14 @@ angular.module('Ads')
         };
 
         self.publishAd = function() {
-
+          RESTRequester.User.publishAd(self.adData, UserService.user.access_token)
+            .success(function(data) {
+              $location.path('/user/ads')
+              //TODO NOTY
+            })
+            .error(function(data) {
+              //TODO NOTY
+            })
         };
   }])
   

@@ -13,6 +13,18 @@ angular.module('Ads')
         getAds : function(filters, token) {
           return $http.get(baseURL + 'user/Ads?PageSize='+ pageSize +'' + filters,
             { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        publishAd : function(adData,token) {
+          return $http.post(baseURL + 'user/Ads', adData,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        profile : function(token) {
+          return $http.get(baseURL + 'user/Profile',
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        deactivateAd: function(id, token) {
+           return $http.put(baseURL + 'user/Ads/Deactivate/' + id,null,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
         }
       }
       var get = {
@@ -34,8 +46,8 @@ angular.module('Ads')
   .factory('UserService', ['RESTRequester', '$location',
     function(RESTRequester, $location) {
       var service = {
-        isLoggedIn: true,
-        user : {username: "admin"},
+        isLoggedIn: false,
+        user : {},
 
         login: function(user) {
           console.log(user)

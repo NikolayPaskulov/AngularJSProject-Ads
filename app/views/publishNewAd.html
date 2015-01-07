@@ -13,20 +13,22 @@
     <div class="image-box"></div>
     <div>
         <label for="image">Image:</label>
-        <input type="text" id="image" />
-        <input type="file"
-               onchange="angular.element(this).scope().fileSelected(this)" />
+        <input id="uploadFile" placeholder="Choose File" disabled="disabled" />
+        <div class="fileUpload btn">
+            <span>Upload</span>
+            <input id="uploadBtn" type="file" class="upload"  onchange="angular.element(this).scope().fileSelected(this)"/>
+        </div>
     </div>
     <div>
         <label for="category">Category:</label>
         <select id="category" ng-model="newAdCtrl.adData.categoryId">
-            <option ng-repeat="c in newAdCtrl.categories" value="c.id" ng-bind="c.name"></option>
+            <option ng-repeat="c in newAdCtrl.categories" ng-value="c.id" ng-bind="c.name" ng-selected="c.id == 0"></option>
         </select>
     </div>
     <div>
         <label for="town">Town:</label>
         <select id="town" ng-model="newAdCtrl.adData.townId">
-            <option ng-repeat="town in newAdCtrl.towns" ng-value="town.id" ng-bind="town.name"></option>
+            <option ng-repeat="town in newAdCtrl.towns" ng-value="town.id" ng-bind="town.name" ng-selected="town.id == newAdCtrl.user.townId"></option>
         </select>
     </div>
     <div>

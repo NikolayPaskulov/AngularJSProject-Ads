@@ -24,6 +24,18 @@ angular.module('Ads', ['ngRoute'])
         }]
       }
     })
+    .when('/user/editProfile', {
+      templateUrl: 'views/editUser.html',
+      controller : 'EditUserCtrl as editUserCtrl',
+      resolve: {
+        auth: ['$location', 'UserService',
+          function($location, UserService) {
+            if(!UserService.user.username) {
+              $location.path('/login')
+            }
+        }]
+      }
+    })
     .when('/user/newAd', {
       templateUrl: 'views/publishNewAd.html',
       controller : 'NewAdCtrl as newAdCtrl',
@@ -35,6 +47,10 @@ angular.module('Ads', ['ngRoute'])
             }
         }]
       }
+    })
+    .when('/user/ads/delete', {
+      templateUrl: 'views/deleteAd.html',
+      controller : 'DeleteAdCtrl as delCtrl',
     })
     $routeProvider.otherwise({
       redirectTo: '/'

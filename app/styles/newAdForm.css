@@ -48,3 +48,53 @@ textarea {
 	margin: 10px 5% 10px 5%;
 	height:90px;
 }
+
+#newAd > div:nth-child(4) label {
+	margin-top:20px;
+}
+
+#newAd > div:nth-child(4) label, #newAd > div:nth-child(5) label,
+#newAd > div:nth-child(6) label {
+	float:left;
+	width:13%;
+}
+
+#newAd > div:nth-child(4) > input {
+	width:40%;
+	float:left;
+	margin:15px 15px 0 0;
+	font-size:20px;
+}
+
+#newAd > div:nth-child(4) .btn {
+	position: relative;
+	overflow: hidden;
+	margin: 10px;
+	width:40%;
+	float:left;
+}
+
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+	opacity: 0;
+	height:40px;	
+}
+
+#newAd > div:last-child {
+	margin: 15px 5% 15px 5%;
+}
+
+#newAd > div:last-child > a {
+	text-decoration: none;
+	width:20%;
+	display:inline-block;
+}
+
+#newAd > div:last-child > a:first-child {
+	margin: 0 20% 0 20%;
+}

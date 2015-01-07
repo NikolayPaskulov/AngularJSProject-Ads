@@ -19,7 +19,8 @@ angular.module('Ads')
 	return {
 		scope: {
 			data: '=',
-			deactivate : '&'
+			deactivate : '&',
+			delete : '&'
 		},
 		replace: true,
 		restrict: 'AE',
@@ -31,6 +32,9 @@ angular.module('Ads')
 			},
 			scope.deactivateBtn = function(id) {
 				scope.deactivate({id : id})
+			},
+			scope.deleteBtn = function(id) {
+				scope.delete({id : id});
 			}
 		}
 	};
