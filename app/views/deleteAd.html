@@ -1,0 +1,26 @@
+<div id="delete-Ad">
+    <div><div>Confirm Deleting Ad?</div></div>
+    <div class="ad-holder">
+        <div class="ad-header">
+            <div ng-bind="delCtrl.delAd.title"></div>
+            <div ng-bind="delCtrl.isoToDate(delCtrl.delAd.date)"></div>
+        </div>
+        <div class="ad-body">
+            <div class="img-conteiner">
+                <img ng-src="{{delCtrl.delAd.imageDataUrl || 'img/NoImgAvailable.png'}}" >
+            </div>
+            <div class="ad-info">
+                <div class="ad-text"><p ng-bind="delCtrl.delAd.text"></p></div>
+                <div class="ad-name">
+                    <div>Category:</div>
+                    <div><p ng-bind="delCtrl.delAd.categoryName || '&nbsp;'"></p></div>
+                </div>
+                <div class="ad-email">
+                    <div>Town:</div>
+                    <div><p ng-bind="delCtrl.delAd.townName || '&nbsp;'"></p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div><a class="btn" ng-click="delCtrl.deleteAd()">Delete</a><a class="btn" href="#  /user/ads">Cancel</a></div>
+</div>

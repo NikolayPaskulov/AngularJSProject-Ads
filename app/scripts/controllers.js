@@ -69,8 +69,8 @@ angular.module('Ads')
           });
       }
   }])
-  .controller('UserAds', ['RESTRequester','UserService', '$route','$routeScope'
-   function(RESTRequester, UserService,$route){
+  .controller('UserAds', ['RESTRequester','UserService', '$route','$location',
+   function(RESTRequester, UserService,$route, $location){
     var self = this;
     self.ads = [];
 
@@ -83,7 +83,6 @@ angular.module('Ads')
       RESTRequester.User.deactivateAd(id,UserService.user.access_token)
         .success(function(data) {
           $route.reload()
-          console.log(data)
           //TODO NOTY
         })
         .error(function(data) {
@@ -91,7 +90,16 @@ angular.module('Ads')
         })
     }
     self.delete = function(id) {
-      console.log(id)
+      $location.path('/user/ads/delete/' + id)
+    }
+    self.publishAgain = function(id) {
+      RESTRequester.User.publishAgainAd(id, UserService.user.access_token)
+        .success(function(data) {
+          $route.reload()
+        })
+        .error(function(data) {
+
+        })
     }
 
   }])
@@ -144,5 +152,35 @@ angular.module('Ads')
             })
         };
   }])
-  
+  .controller('DeleteAdCtrl', ['RESTRequester', 'UserService','$location','$routeParams',
+    function(RESTRequester,UserService, $location,$routeParams){
+      var self = this;
+      self.delAd;
+
+      self.isoToDate = function(str) {
+            var d = new Date(str).toDateString().split(' ').slice(1);
+             return  d[1] + '-' + d[0] + '-' + d[2];
+      }
+
+    RESTRequester.User.getAds('',UserService.user.access_token)
+      .success(function(data) {
+        for (var i = 0; i < data.ads.length; i++) {
+          if(data.ads[i].id == $routeParams.ad){
+            self.delAd = data.ads[i]
+            break;
+          }
+        };
+      })
+
+      self.deleteAd = function() {
+        console.log(UserService.user.access_token)
+        RESTRequester.User.deleteAd(self.delAd.id, UserService.user.access_token)
+          .success(function(data) {
+            $location.path('/user/ads')
+          })
+          .error(function(data) {
+
+          })
+      }
+  }])
   

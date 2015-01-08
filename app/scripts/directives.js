@@ -20,7 +20,8 @@ angular.module('Ads')
 		scope: {
 			data: '=',
 			deactivate : '&',
-			delete : '&'
+			delete : '&',
+			publish : '&'
 		},
 		replace: true,
 		restrict: 'AE',
@@ -35,6 +36,9 @@ angular.module('Ads')
 			},
 			scope.deleteBtn = function(id) {
 				scope.delete({id : id});
+			},
+			scope.publishAgainBtn = function(id) {
+				scope.publish({id: id});
 			}
 		}
 	};

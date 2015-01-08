@@ -25,6 +25,14 @@ angular.module('Ads')
         deactivateAd: function(id, token) {
            return $http.put(baseURL + 'user/Ads/Deactivate/' + id,null,
             { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        deleteAd : function(id,token) {
+          return $http.delete(baseURL + 'user/Ads/' + id,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        publishAgainAd: function(id, token) {
+           return $http.put(baseURL + 'user/Ads/PublishAgain/' + id,null,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
         }
       }
       var get = {

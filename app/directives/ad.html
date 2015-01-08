@@ -8,18 +8,18 @@
 			<img ng-src="{{data.imageDataUrl || 'img/NoImgAvailable.png'}}" >
 		</div>
 		<div class="ad-info">
-			<div class="ad-text"><p ng-bind="data.text"></p></div>
+			<div class="ad-text"><p ng-bind="data.text || '&nbsp;'"></p></div>
 			<div class="ad-name">
 				<div>Name:</div>
-				<div><p ng-bind="data.ownerName"></p></div>
+				<div><p ng-bind="data.ownerName || '&nbsp;'"></p></div>
 			</div>
 			<div class="ad-email">
 				<div>Email:</div>
-				<div><p ng-bind="data.ownerEmail"></p></div>
+				<div><p ng-bind="data.ownerEmail || '&nbsp;'"></p></div>
 			</div>
 			<div class="ad-phone">
 				<div>Tel:</div>
-				<div><p ng-bind="data.ownerPhone"></p></div>
+				<div><p ng-bind="data.ownerPhone || '&nbsp;'"></p></div>
 			</div>
 		</div>
 	</div>

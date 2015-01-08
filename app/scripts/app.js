@@ -48,9 +48,17 @@ angular.module('Ads', ['ngRoute'])
         }]
       }
     })
-    .when('/user/ads/delete', {
+    .when('/user/ads/delete/:ad', {
       templateUrl: 'views/deleteAd.html',
       controller : 'DeleteAdCtrl as delCtrl',
+      resolve: {
+        auth: ['$location', 'UserService',
+          function($location, UserService) {
+            if(!UserService.user.username) {
+              $location.path('/login')
+            }
+        }]
+      }
     })
     $routeProvider.otherwise({
       redirectTo: '/'

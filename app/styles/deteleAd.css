@@ -1,0 +1,38 @@
+#delete-Ad {
+	width:65%;
+}
+
+#delete-Ad > .ad-holder {
+	border-bottom: none;
+	border-top:none;
+	margin-top:0;
+}
+
+#delete-Ad > * {
+	width:100%;
+	float:left;
+}
+
+#delete-Ad > div:first-child {
+	margin-top:30px;
+	background: #a9d18e;
+	border: 1px solid #507e32;
+	border-bottom: none;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+#delete-Ad > div:last-child {
+	margin-bottom:30px;
+	background: #a9d18e;
+	border: 1px solid #507e32;
+	border-top: none;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+#delete-Ad > div:last-child > a {
+	margin: 15px 0 15px 0;
+	display:inline-block;
+}
+
