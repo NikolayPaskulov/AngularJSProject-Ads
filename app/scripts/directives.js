@@ -20,7 +20,6 @@ angular.module('Ads')
 		scope: {
 			data: '=',
 			deactivate : '&',
-			delete : '&',
 			publish : '&'
 		},
 		replace: true,
@@ -34,12 +33,23 @@ angular.module('Ads')
 			scope.deactivateBtn = function(id) {
 				scope.deactivate({id : id})
 			},
-			scope.deleteBtn = function(id) {
-				scope.delete({id : id});
-			},
 			scope.publishAgainBtn = function(id) {
 				scope.publish({id: id});
 			}
 		}
 	};
 }])
+.directive('pager', ['RESTRequester', function(RESTRequester){
+	return {
+		scope: {
+			numPage: '@',
+			change: '&'
+		},
+		replace: true,
+		restrict: 'E',
+		templateUrl: 'directives/pager.html',
+		link: function(scope, element, attrs) {
+
+		}
+	};
+}]);

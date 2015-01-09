@@ -21,13 +21,13 @@
     </div>
     <div>
         <label for="category">Category:</label>
-        <select id="category" ng-model="newAdCtrl.adData.categoryId">
+        <select id="category" ng-model="newAdCtrl.adData.categoryId" class="softuni-select">
             <option ng-repeat="c in newAdCtrl.categories" ng-value="c.id" ng-bind="c.name" ng-selected="c.id == 0"></option>
         </select>
     </div>
     <div>
         <label for="town">Town:</label>
-        <select id="town" ng-model="newAdCtrl.adData.townId">
+        <select id="town" ng-model="newAdCtrl.adData.townId" class="softuni-select">
             <option ng-repeat="town in newAdCtrl.towns" ng-value="town.id" ng-bind="town.name" ng-selected="town.id == newAdCtrl.user.townId"></option>
         </select>
     </div>

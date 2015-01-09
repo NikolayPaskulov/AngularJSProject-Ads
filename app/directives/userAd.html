@@ -28,7 +28,7 @@
 		<div ng-show="data.status == 'Inactive'">
 			<button class="btn">Edit</button>
 			<button class="btn" ng-click="publishAgainBtn(data.id)">Publish Again</button>	
-			<button class="btn" ng-click="deleteBtn(data.id)">Delete</button>		
+			<a class="btn" ng-href="#/user/ads/delete/{{data.id}}">Delete</a>		
 		</div>
 	</div>
 </div>

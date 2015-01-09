@@ -61,9 +61,9 @@ button {
 
 #main-wrapper > aside {
 	width:16%;
-	min-width:213px;
 	display:inline-block;
-	margin: 15px 2% 20px 2%;
+	margin: 1% 2% 1% 2%;
+	float: left;
 }
 
 #main-wrapper > aside > div, #home-view > #filters > div{
@@ -123,9 +123,48 @@ button {
 	font-size:20px;
 	border-radius: 10px;
 	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 #ng-view {
 	width:79%;
-	float:right;
+	float:left;
 }
+
+.pager-holder {
+	width:100%;
+}
+
+.pager > .btn {
+	width:45px;
+	float:left;
+	border-radius: 0;
+	cursor: pointer;
+
+}
+
+.pager > .btn:first-child  {
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+.pager > .btn:last-child {
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.softuni-select {
+	border: 1px solid #111;
+	background: transparent;
+	width: 150px;
+	padding: 5px 35px 5px 5px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	height: 34px;
+	outline: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: url('../img/softuni-select.png') 96% / 30% no-repeat #eee;
+} 

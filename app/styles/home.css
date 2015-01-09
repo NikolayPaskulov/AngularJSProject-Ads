@@ -3,7 +3,7 @@
 }
 
 #home-view > #ads-holder, #home-view > #filters  {
-	margin: 15px 2% 20px 2%;
+	margin: 1% 2% 1% 2%;
 	float:left;
 }
 #home-view > #ads-holder {
@@ -34,8 +34,25 @@
 	padding: 5px;
 }
 #home-view > #ads-holder > div {
-	width:46%;
-	margin: 0 2% 0 2%;
+	width:70%;
+	margin: 1% 2% 0 2%;
 	float:left;
+	max-width: 760px;
+	min-width: 500px;
+}
+
+#home-view > div:first-child {
+	width:100%;
+	margin-left:4%;
+}
+
+#home-view > div:first-child > select:first-child {
+	float:left;
+	margin-left:5%;
+}
+
+#home-view > div:first-child > select:nth-child(2) {
+	float:right;
+	margin-right:38%;
 }
 

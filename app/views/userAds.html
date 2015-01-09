@@ -1,10 +1,12 @@
 <div id="userAds-holder">
-	<select>
-		<option value="-1">All</option>
-		<option value="2">Published</option>
-		<option value="1">Waiting Approval</option>
-		<option value="0">Inactive</option>
-		<option value="3">Rejected</option>
-	</select>
-	<userad	 ng-repeat="ad in userAds.ads" data="ad" deactivate="userAds.deactivate(id)" delete="userAds.delete(id)" publish="userAds.publishAgain(id)" />
+	<div>
+		<select class="softuni-select" >
+			<option value="-1">All</option>
+			<option value="2">Published</option>
+			<option value="1">Waiting Approval</option>
+			<option value="0">Inactive</option>
+			<option value="3">Rejected</option>
+		</select>
+	</div>
+	<userad	 ng-repeat="ad in userAds.ads" data="ad" deactivate="userAds.deactivate(id)"  publish="userAds.publishAgain(id)" />
 </div>

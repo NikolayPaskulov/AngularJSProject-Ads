@@ -10,15 +10,21 @@ angular.module('Ads')
   }])
   .controller('HomeCtrl', ['RESTRequester',
     function(RESTRequester){
-      var self = this;
+      var self = this,
+          filter,
+          currentPage = 1;
+      self.pages = [];
       self.ads = [];
       self.towns = [{ id : 0, name : '(None)'}];
       self.categories = [{ id : 0, name : '(None)'}];
+      self.selectedTown;
+      self.selectedCat;
 
       //GET ALL ADS
       RESTRequester.get.ads('')
-        .success(function(data) { 
+        .success(function(data) {
           self.ads = data.ads;
+          fillPager(data.numPages);
         })
 
       //GET ALL ADS
@@ -32,6 +38,36 @@ angular.module('Ads')
         .success(function(data) { 
           self.categories = self.categories.concat(data);
         })
+
+      self.changePage = function(id) {
+        console.log(self.pages.length)
+        if(currentPage == id) return;
+        if(id == 'next' && currentPage == self.pages.length) return;
+        if(id == 'prev' && currentPage == 1) return;
+        currentPage = (id == 'next') ? currentPage+ 1 : (id == 'prev') ? currentPage - 1 :
+        id;
+      RESTRequester.get.ads(((filter) ? filter : '') + '&StartPage=' + currentPage)
+        .success(function(data) {
+          self.ads = data.ads;
+        })
+      }
+
+      self.update = function(asd) {
+        filter = (self.selectedTown && self.selectedTown != 0) ? '&TownId=' +  self.selectedTown : '';
+        filter += (self.selectedCat && self.selectedCat != 0) ? '&CategoryId=' +  self.selectedCat : '';
+        RESTRequester.get.ads(filter)
+        .success(function(data) {
+          self.ads = data.ads;
+          fillPager(data.numPages);
+        })
+      }
+
+      function fillPager(num) {
+        self.pages = [];
+        for (var i = 1; i <= num; i++) {
+          self.pages.push(i)
+        }
+      }
   }])
   .controller('LoginCtrl', ['UserService','RESTRequester',
     function(UserService, RESTRequester){
@@ -89,9 +125,7 @@ angular.module('Ads')
           //TODO NOTY
         })
     }
-    self.delete = function(id) {
-      $location.path('/user/ads/delete/' + id)
-    }
+
     self.publishAgain = function(id) {
       RESTRequester.User.publishAgainAd(id, UserService.user.access_token)
         .success(function(data) {
@@ -162,14 +196,9 @@ angular.module('Ads')
              return  d[1] + '-' + d[0] + '-' + d[2];
       }
 
-    RESTRequester.User.getAds('',UserService.user.access_token)
+    RESTRequester.User.getAdById($routeParams.ad,UserService.user.access_token)
       .success(function(data) {
-        for (var i = 0; i < data.ads.length; i++) {
-          if(data.ads[i].id == $routeParams.ad){
-            self.delAd = data.ads[i]
-            break;
-          }
-        };
+        self.delAd = data;
       })
 
       self.deleteAd = function() {
@@ -182,5 +211,23 @@ angular.module('Ads')
 
           })
       }
+  }])
+  .controller('EditUserCtrl', ['RESTRequester','UserService', 
+    function(RESTRequester, UserService){
+      var self = this;
+      self.user;
+      self.towns = [{id : 0, name:'(None)'}]
+    
+      RESTRequester.get.towns()
+        .success(function(data) {
+          self.towns = self.towns.concat(data);
+        })
+
+      RESTRequester.User.profile(UserService.user.access_token)
+        .success(function(data) {
+          self.user = data;
+          console.log(data)
+        })
+
   }])
   

@@ -1,0 +1,18 @@
+<div id="edit-user-profile">
+	<div id="user-info">
+		<div>Edit Profile</div>
+		<div>Name:</div>
+		<input type="text" ng-value="editUserCtrl.user.name" />
+		<div>Name:</div>
+		<input type="text" ng-value="editUserCtrl.user.email" />
+		<div>Name:</div>
+		<input type="text" ng-value="editUserCtrl.user.phone" />
+		<select class="softuni-select">
+			<option ng-repeat="town in editUserCtrl.towns" ng-value="town.id" ng-bind="town.name"></option>
+		</select>
+		<div><a class="btn" ng-click="editUserCtrl.update()">Update</a><a href="#/user/ads" class="btn">Cancel</a></div>
+	</div>
+	<div id="change-password">
+
+	</div>
+</div>

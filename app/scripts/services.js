@@ -33,6 +33,10 @@ angular.module('Ads')
         publishAgainAd: function(id, token) {
            return $http.put(baseURL + 'user/Ads/PublishAgain/' + id,null,
             { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        getAdById: function(id,token) {
+           return $http.get(baseURL + 'user/Ads/' + id,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
         }
       }
       var get = {
