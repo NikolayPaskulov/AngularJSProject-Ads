@@ -60,6 +60,30 @@ angular.module('Ads', ['ngRoute'])
         }]
       }
     })
+    .when('/user/ads/edit/:ad', {
+      templateUrl: 'views/editAd.html',
+      controller : 'EditAdCtrl as editAdCtrl',
+      resolve: {
+        auth: ['$location', 'UserService',
+          function($location, UserService) {
+            if(!UserService.user.username) {
+              $location.path('/login')
+            }
+        }]
+      }
+    })
+    .when('/admin/home', {
+      templateUrl: 'views/adminHome.html',
+      controller : 'AdHomeCtrl as adHomeCtrl',
+      resolve: {
+        auth: ['$location', 'UserService',
+          function($location, UserService) {
+            if(!UserService.user.isAdmin) {
+              $location.path('/login')
+            }
+        }]
+      }
+    })
     $routeProvider.otherwise({
       redirectTo: '/'
     });

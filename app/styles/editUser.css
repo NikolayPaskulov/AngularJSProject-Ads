@@ -1,0 +1,54 @@
+#edit-user-profile {
+	width:80%;
+	margin-left:10%;
+    margin: 30px 0 30px 10%;
+}
+
+#edit-user-profile > div {
+	width: 42%;
+	background: #a9d18e;
+	border: 1px solid #507e32;
+	border-radius: 10px;
+	float:left;
+}
+
+#edit-user-profile > #user-info {
+	margin-right: 5%;
+}
+
+#edit-user-profile > div > form > * {
+	width:90%;
+	margin: 0 5% 0 5%;
+	display:inline-block;
+}
+
+#edit-user-profile > #user-info > form >select {
+	width:60%;
+}
+
+#edit-user-profile > div > form > div:last-child {
+	margin: 10px 0 10px 0;
+}
+
+#edit-user-profile > div > form > div:last-child > input {
+	float:left;
+	margin-left:10%;
+	width:auto;
+}
+
+#edit-user-profile > div > form >div:last-child > a:nth-child(2) {
+	float:right;
+	margin-right: 10%;
+		width:auto;
+}
+
+#edit-user-profile > div > form > input {
+	outline: 0;
+	border-radius: 4px;
+	font-size: 18px;
+	padding-left:8px;
+}
+
+#edit-user-profile > div > form > label {
+	margin-top:8px;
+}

@@ -1,6 +1,6 @@
 <div id="userAds-holder">
 	<div>
-		<select class="softuni-select" >
+		<select class="softuni-select" ng-model="userAds.adsType" ng-change="userAds.change()" >
 			<option value="-1">All</option>
 			<option value="2">Published</option>
 			<option value="1">Waiting Approval</option>
@@ -8,5 +8,12 @@
 			<option value="3">Rejected</option>
 		</select>
 	</div>
-	<userad	 ng-repeat="ad in userAds.ads" data="ad" deactivate="userAds.deactivate(id)"  publish="userAds.publishAgain(id)" />
+	<userad	 ng-repeat="ad in userAds.ads" data="ad" deactivate="userAds.deactivate(id)"  publish="userAds.publishAgain(id)"></userad>
+	<div class="pager-holder">
+		<div class="pager">
+			<div ng-click="userAds.changePage('prev')" class="btn">Prev</div>
+			<div ng-repeat="i in userAds.pages" ng-bind="i" ng-click="userAds.changePage(i)" class="btn"></div>
+			<div ng-click="userAds.changePage('next')" class="btn">Next</div>
+		</div>
+	</div>
 </div>

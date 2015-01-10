@@ -3,7 +3,7 @@ textarea {
 }
 
 #newAd {
-	width:50%;
+	width:65%;
 	background: #a9d18e;
 	border: 1px solid #507e32;
 	border-radius: 10px;
@@ -40,13 +40,13 @@ textarea {
 	background: #c5e0b4;
 	border: 1px dotted #649b3f;
 	float:left;
-	height: 110px;
+	height: 140px;
 }
 
 #newAd > div:nth-child(3) > img {
 	width:90%;
 	margin: 10px 5% 10px 5%;
-	height:90px;
+	height:120px;
 }
 
 #newAd > div:nth-child(4) label {
@@ -60,7 +60,7 @@ textarea {
 }
 
 #newAd > div:nth-child(4) > input {
-	width:40%;
+	width:51%;
 	float:left;
 	margin:15px 15px 0 0;
 	font-size:20px;
@@ -69,8 +69,8 @@ textarea {
 #newAd > div:nth-child(4) .btn {
 	position: relative;
 	overflow: hidden;
-	margin: 10px;
-	width:40%;
+	margin: 3px;
+	width:auto;
 	float:left;
 }
 
@@ -97,4 +97,8 @@ textarea {
 
 #newAd > div:last-child > a:first-child {
 	margin: 0 20% 0 20%;
+}
+
+#uploadFile {
+	font-size:14px;
 }

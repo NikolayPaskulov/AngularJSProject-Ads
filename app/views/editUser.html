@@ -1,18 +1,54 @@
 <div id="edit-user-profile">
 	<div id="user-info">
 		<div>Edit Profile</div>
-		<div>Name:</div>
-		<input type="text" ng-value="editUserCtrl.user.name" />
-		<div>Name:</div>
-		<input type="text" ng-value="editUserCtrl.user.email" />
-		<div>Name:</div>
-		<input type="text" ng-value="editUserCtrl.user.phone" />
-		<select class="softuni-select">
-			<option ng-repeat="town in editUserCtrl.towns" ng-value="town.id" ng-bind="town.name"></option>
-		</select>
-		<div><a class="btn" ng-click="editUserCtrl.update()">Update</a><a href="#/user/ads" class="btn">Cancel</a></div>
+		<form name="editUserForm" ng-submit="editUserCtrl.update()">
+			<label for="name">Name:</label>
+			<input type="text" ng-model="editUserCtrl.user.name" id="name" 
+					required
+					ng-minlength="2"
+					name="name"
+			/>
+			<label for="email">Email:</label>
+			<input type="email" ng-model="editUserCtrl.user.email" id="email" 
+					required
+					name="email"
+			/>
+			<label for="phone">Phone:</label>
+			<input type="phone" ng-model="editUserCtrl.user.phoneNumber" id="phone"/>
+			<label>Town:</label>
+			<select class="softuni-select" ng-model="editUserCtrl.user.townId">
+				<option ng-repeat="town in editUserCtrl.towns" ng-value="town.id" ng-bind="town.name" ng-selected="town.id == editUserCtrl.user.townId"></option>
+			</select>
+			<div>
+				<input type="submit" class="btn" value="Update" ng-disabled="editUserForm.$invalid"/>
+				<a href="#/user/ads" class="btn">Cancel</a>
+			</div>
+		</form>
 	</div>
 	<div id="change-password">
-
+		<div>Change Password</div>
+		<form name="changePassForm" ng-submit="editUserCtrl.changePassword()">
+			<label for="old-pass">Old password:</label>
+			<input type="password" id="old-pass" ng-model="editUserCtrl.changePass.oldPassword"
+				required
+				name="old-pass"
+			/>
+			<label for="old-pass">New password:</label>
+			<input type="password" id="new-pass" 
+				ng-model="editUserCtrl.changePass.newPassword"
+				required
+				name="new-pass"
+			/>
+			<label for="old-pass">Confirm new password:</label>
+			<input type="password" id="conf-new-pass" 
+					ng-model="editUserCtrl.changePass.confirmPassword" 				
+					required
+					name="new-pass"
+					/>
+			<div>
+				<input type="submit" value="Change Password" class="btn" ng-disabled="changePassForm.$invalid"/>
+				<a href="#/user/ads" class="btn">Cancel</a>
+			</div>
+		</form>
 	</div>
 </div>

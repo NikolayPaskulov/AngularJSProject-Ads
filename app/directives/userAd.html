@@ -26,7 +26,7 @@
 		<div ng-bind="data.status"></div>
 		<button ng-show="data.status == 'WaitingApproval' || data.status == 'Published'" class="btn" ng-click="deactivateBtn(data.id)">Deactivate</button>
 		<div ng-show="data.status == 'Inactive'">
-			<button class="btn">Edit</button>
+			<a class="btn" ng-href="#/user/ads/edit/{{data.id}}">Edit</a>
 			<button class="btn" ng-click="publishAgainBtn(data.id)">Publish Again</button>	
 			<a class="btn" ng-href="#/user/ads/delete/{{data.id}}">Delete</a>		
 		</div>

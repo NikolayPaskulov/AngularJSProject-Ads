@@ -15,6 +15,7 @@ angular.module('Ads')
             { "headers" : { "Authorization": 'Bearer ' + token}});
         },
         publishAd : function(adData,token) {
+          console.log(adData)
           return $http.post(baseURL + 'user/Ads', adData,
             { "headers" : { "Authorization": 'Bearer ' + token}});
         },
@@ -37,6 +38,18 @@ angular.module('Ads')
         getAdById: function(id,token) {
            return $http.get(baseURL + 'user/Ads/' + id,
             { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        editUser: function(data,token) {
+           return $http.put(baseURL + 'user/Profile',data, 
+             { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        changePassword: function(data,token) {
+            return $http.put(baseURL + 'user/ChangePassword',data, 
+             { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        editAd: function(id,data,token) {
+            return $http.put(baseURL + 'user/Ads/' + id,data, 
+             { "headers" : { "Authorization": 'Bearer ' + token}});
         }
       }
       var get = {
@@ -65,7 +78,12 @@ angular.module('Ads')
           console.log(user)
           this.isLoggedIn = true;
           this.user = user;
-          $location.path('/');
+          if(user.isAdmin) {
+            $location.path('/admin/home');
+          }else {
+            $location.path('/');
+          }
+
         },
         logout: function() {
           this.isLoggedIn = false;
