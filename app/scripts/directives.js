@@ -39,17 +39,27 @@ angular.module('Ads')
 		}
 	};
 }])
-.directive('pager', ['RESTRequester', function(RESTRequester){
+.directive('adminad', [function(){
 	return {
 		scope: {
-			numPage: '@',
-			change: '&'
+			data: '=',
+			approve : '&',
+			reject : '&'
 		},
 		replace: true,
-		restrict: 'E',
-		templateUrl: 'directives/pager.html',
+		restrict: 'AE',
+		templateUrl: 'directives/adminAd.html',
 		link: function(scope, element, attrs) {
-
+			scope.isoToDate = function(str) {
+        		var d = new Date(str).toDateString().split(' ').slice(1);
+       			 return  d[1] + '-' + d[0] + '-' + d[2];
+			},
+			scope.approveBtn = function(id) {
+				scope.approve({id : id})
+			},
+			scope.rejectBtn = function(id) {
+				scope.reject({id: id});
+			}
 		}
 	};
-}]);
+}])

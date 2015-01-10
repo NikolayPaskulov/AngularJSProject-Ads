@@ -1,0 +1,50 @@
+<div class="ad-holder admin-ad-holder">
+	<div>
+		<div class="ad-header">
+			<div ng-bind="data.title"></div>
+			<div ng-bind="isoToDate(data.date)"></div>
+		</div>
+		<div class="ad-body">
+			<div class="img-conteiner">
+				<img ng-src="{{data.imageDataUrl || 'img/NoImgAvailable.png'}}" >
+			</div>
+			<div class="ad-info">
+				<div class="ad-text"><p ng-bind="data.text"></p></div>
+				<div class="ad-username">
+					<div>Username:</div>
+					<div><p ng-bind="data.ownerUsername || '&nbsp;'"></p></div>
+				</div>		
+				<div class="ad-name">
+					<div>Name:</div>
+					<div><p ng-bind="data.ownerName || '&nbsp;'"></p></div>
+				</div>
+				<div class="ad-email">
+					<div>Email:</div>
+					<div><p ng-bind="data.ownerEmail || '&nbsp;'"></p></div>
+				</div>
+				<div class="ad-phone">
+					<div>Phone:</div>
+					<div><p ng-bind="data.ownerPhone || '&nbsp;'"></p></div>
+				</div>				
+				<div class="ad-category">
+					<div>Category:</div>
+					<div><p ng-bind="data.categoryName || '&nbsp;'"></p></div>
+				</div>
+				<div class="ad-town">
+					<div>Town:</div>
+					<div><p ng-bind="data.townName || '&nbsp;'"></p></div>
+				</div>
+				<div class="ad-status">
+					<div>Status:</div>
+					<div><p ng-bind="data.status || '&nbsp;'"></p></div>
+				</div>		
+			</div>
+		</div>
+	</div>
+	<div class="btn-holder">
+		<button class="btn" ng-click="approveBtn(data.id)">Approve</button>
+		<button class="btn" ng-click="rejectBtn(data.id)">Reject</button>
+		<a class="btn" ng-href="#/admin/ad/edit/{{data.id}}">Edit</a>
+		<a class="btn" ng-href="#/admin/ad/delete/{{data.id}}">Delete</a>
+	</div>
+</div>

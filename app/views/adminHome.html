@@ -1,13 +1,13 @@
 <div id="home-view">
 	<div>
-		<select ng-model="homeCtrl.selectedTown" ng-change="homeCtrl.update()" class="softuni-select">
-			<option ng-repeat="town in homeCtrl.towns" ng-value="town.id" ng-bind="town.name" ng-selected="town.id == 0"></option>
+		<select ng-model="adHomeCtrl.selectedTown" ng-change="adHomeCtrl.update()" class="softuni-select">
+			<option ng-repeat="town in adHomeCtrl.towns" ng-value="town.id" ng-bind="town.name" ng-selected="town.id == 0"></option>
 		</select>
-		<select ng-model="homeCtrl.selectedCat" ng-change="homeCtrl.update()" class="softuni-select">
-			<option ng-repeat="category in homeCtrl.categories" ng-value="category.id" ng-bind="category.name" ng-selected="category.id == 0"></option>
+		<select ng-model="adHomeCtrl.selectedCat" ng-change="adHomeCtrl.update()" class="softuni-select">
+			<option ng-repeat="category in adHomeCtrl.categories" ng-value="category.id" ng-bind="category.name" ng-selected="category.id == 0"></option>
 		</select>
-		<select ng-model="homeCtrl.selectedStatus" ng-change="homeCtrl.update()" class="softuni-select">
-			<option value="-1">All</option>
+		<select ng-model="adHomeCtrl.selectedStatus" ng-change="adHomeCtrl.update()" class="softuni-select">
+			<option value="-1" selected >All</option>
 			<option value="2">Published</option>
 			<option value="1">Waiting Approval</option>
 			<option value="0">Inactive</option>
@@ -15,13 +15,13 @@
 		</select>
 	</div>
 	<div id="ads-holder">
-		<adminads ng-repeat="ad in homeCtrl.ads" data="ad"></ad>
+		<adminad ng-repeat="ad in adHomeCtrl.ads" data="ad" approve="adHomeCtrl.approve(id)"  reject="adHomeCtrl.reject(id)" ></adminad>
 	</div>
 	<div class="pager-holder">
 		<div class="pager">
-			<div ng-click="homeCtrl.changePage('prev')" class="btn">Prev</div>
-			<div ng-repeat="i in homeCtrl.pages" ng-bind="i" ng-click="homeCtrl.changePage(i)" class="btn"></div>
-			<div ng-click="homeCtrl.changePage('next')" class="btn">Next</div>
+			<div ng-click="adHomeCtrl.changePage('prev')" class="btn">Prev</div>
+			<div ng-repeat="i in adHomeCtrl.pages" ng-bind="i" ng-click="adHomeCtrl.changePage(i)" class="btn"></div>
+			<div ng-click="adHomeCtrl.changePage('next')" class="btn">Next</div>
 		</div>
 	</div>
 </div>

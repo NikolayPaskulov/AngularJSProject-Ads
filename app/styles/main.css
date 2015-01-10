@@ -66,21 +66,24 @@ button {
 	float: left;
 }
 
-#main-wrapper > aside > div, #home-view > #filters > div{
+#main-wrapper > aside > div {
 	width:100%;
 	background: #a9d18e;
     border: 1px solid #507e32;
     margin-top: 15px;
 }
 
-#main-wrapper > aside > div > div, #home-view > #filters > div > div {
+#main-wrapper > aside > div > div {
 	margin-left: 10%;
 	margin-right:10%;
 	width:80%;
 }
 
-#main-wrapper > aside > div > div:first-child,
-#home-view > #filters > div > div:first-child  {
+#main-wrapper > aside > div > div > div {
+	width:100%;
+}
+
+#main-wrapper > aside > div > div:first-child {
 	font-size:23px;
 	text-align: center;
 	font-weight: bold;
@@ -88,29 +91,17 @@ button {
 	padding: 10px 0 10px 0;
 }
 
-#main-wrapper > aside > div > div > a,
-#home-view > #filters > div > div > div > div:first-child {
-	display:inline-block;
-	width:100%;
-	padding: 10px 0 10px 15px;
-	margin: 3px 0 3px 0;
-	text-decoration: none;
-	font-size:20px;
+#main-wrapper > aside > div:first-child .btn {
+	background: #a9d18e;
 	color:black;
-	border:1px solid #a9d18e;
-
+	border-radius: 0;
+    border:1px solid #a9d18e;	
+    width:100%;
+    text-align: left;
 }
-#main-wrapper > aside > div > div > a:hover, 
-#main-wrapper > aside > div > div > a:hover,
-#home-view > #filters > div > div > div > div:first-child:hover,
-#home-view > #filters > div > div > div > div:first-child:active, .btn:hover
-{
-	background: #daa600;
+#main-wrapper > aside > div:first-child .btn:hover {
+    background: #daa600;
     border:1px solid #7f6000;
-}
-
-#main-wrapper > aside > div > div:last-child  {
-	margin-bottom: 10px;
 }
 
 .btn {
@@ -125,6 +116,12 @@ button {
 	text-align: center;
 	text-decoration: none;
 	cursor: pointer;
+	display: inline-block;
+}
+
+.btn:hover {
+    background: #daa600;
+    border:1px solid #7f6000;
 }
 
 #ng-view {

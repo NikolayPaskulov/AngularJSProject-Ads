@@ -72,7 +72,7 @@ angular.module('Ads', ['ngRoute'])
         }]
       }
     })
-    .when('/admin/home', {
+    .when('/admin/ads', {
       templateUrl: 'views/adminHome.html',
       controller : 'AdHomeCtrl as adHomeCtrl',
       resolve: {

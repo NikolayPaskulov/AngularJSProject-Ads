@@ -1,12 +1,16 @@
 angular.module('Ads')
-  .controller('MainCtrl', ['UserService',
-   function(UserService){
+  .controller('MainCtrl', ['UserService', '$rootScope',
+   function(UserService, $rootScope){
     var self = this;
     self.user = UserService;
 
     self.logout = function() {
       UserService.logout();
     }
+
+    $rootScope.$on('userLogin', function(event,user) {
+      self.user = user;
+    })
   }])
   .controller('HomeCtrl', ['RESTRequester',
     function(RESTRequester){
@@ -68,14 +72,15 @@ angular.module('Ads')
         }
       }
   }])
-  .controller('LoginCtrl', ['UserService','RESTRequester',
-    function(UserService, RESTRequester){
+  .controller('LoginCtrl', ['UserService','RESTRequester','$rootScope',
+    function(UserService, RESTRequester, $rootScope){
       var self = this;
       self.user = {};
 
       self.submit = function() {
         RESTRequester.User.login(self.user)
           .success(function(data) {
+            $rootScope.$broadcast('userLogin', data);
             UserService.login(data);
           })
       }

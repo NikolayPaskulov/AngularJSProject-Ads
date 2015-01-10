@@ -34,12 +34,20 @@
 		<aside>
 			<div>
 				<div>Navigation</div>
-				<div><a href="#/">Home</a></div>
-				<div ng-show="mainCtrl.user.isLoggedIn"><a href="#/user/ads">My Ads</a></div>
-				<div ng-show="mainCtrl.user.isLoggedIn"><a href="#/user/newAd">Publish New Ad</a></div>
-				<div ng-show="mainCtrl.user.isLoggedIn"><a href="#/user/editProfile">Edit Profile</a></div>
+				<div ng-hide="mainCtrl.user.isAdmin == 'true'">
+					<div ><a href="#/" class="btn">Home</a></div>
+					<div ng-show="mainCtrl.user.isLoggedIn"><a href="#/user/ads" class="btn">My Ads</a></div>
+					<div ng-show="mainCtrl.user.isLoggedIn"><a href="#/user/newAd" class="btn">Publish New Ad</a></div>
+					<div ng-show="mainCtrl.user.isLoggedIn"><a href="#/user/editProfile" class="btn" >Edit Profile</a></div>
+				</div>
+				<div ng-show="mainCtrl.user.isAdmin">
+					<div><a href="#/admin/ads" class="btn">Ads</a></div>
+					<div><a href="#/admin/users" class="btn">Users</a></div>
+					<div><a href="#/admin/categories" class="btn">Categories</a></div>
+					<div><a href="#/admin/towns" class="btn">Towns</a></div>
+				</div>
 			</div>
-			<div ng-hide="mainCtrl.user.isLoggedIn">
+			<div ng-hide="mainCtrl.user.isLoggedIn || mainCtrl.user.isAdmin == 'true'">
 				<div>To publish a new <br>ad, please login.</div>
 				<div><a href="#/login" class="btn">Login</a></div>
 				<div><a href="#/register" class="btn">Register</a></div>

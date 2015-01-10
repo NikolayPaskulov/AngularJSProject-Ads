@@ -1,6 +1,6 @@
 angular.module('Ads')
-.controller('AdHomeCtrl', ['RESTRequester',
-    function(RESTRequester){
+.controller('AdHomeCtrl', ['RESTRequester','UserService','$route',
+    function(RESTRequester, UserService, $route){
       var self = this,
           filter,
           currentPage = 1;
@@ -10,9 +10,10 @@ angular.module('Ads')
       self.categories = [{ id : 0, name : '(None)'}];
       self.selectedTown;
       self.selectedCat;
+      self.selectedStatus;
 
       //GET ALL ADS
-      RESTRequester.get.ads('')
+      RESTRequester.Admin.getAds('', UserService.user.access_token)
         .success(function(data) {
           self.ads = data.ads;
           fillPager(data.numPages);
@@ -45,7 +46,8 @@ angular.module('Ads')
       self.update = function(asd) {
         filter = (self.selectedTown && self.selectedTown != 0) ? '&TownId=' +  self.selectedTown : '';
         filter += (self.selectedCat && self.selectedCat != 0) ? '&CategoryId=' +  self.selectedCat : '';
-        RESTRequester.get.ads(filter)
+        filter += ( self.selectedStatus &&  self.selectedStatus != -1) ? '&Status=' +  self.selectedStatus : '';
+      RESTRequester.Admin.getAds(filter, UserService.user.access_token)
         .success(function(data) {
           self.ads = data.ads;
           fillPager(data.numPages);
@@ -58,3 +60,24 @@ angular.module('Ads')
           self.pages.push(i)
         }
       }
+
+      self.approve = function(id) {
+      	RESTRequester.Admin.approveAd(id,UserService.user.access_token)
+        	.success(function(data) {
+          		$route.reload()
+        	})
+        	.error(function(data) {
+
+        	})
+      }
+
+      self.reject = function(id) {
+      	RESTRequester.Admin.rejectAd(id,UserService.user.access_token)
+        	.success(function(data) {
+          		$route.reload()
+        	})
+        	.error(function(data) {
+
+        	})
+      }
+  }])

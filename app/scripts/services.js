@@ -63,9 +63,28 @@ angular.module('Ads')
           return $http.get(baseURL + 'Categories');
         }
       }
+      var Admin = {
+        getAds : function(filters, token) {
+          return $http.get(baseURL + 'admin/Ads?PageSize='+ pageSize +'' + filters,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        deleteAd : function(id,token) {
+          return $http.delete(baseURL + 'admin/Ads/' + id,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        rejectAd: function(id, token) {
+           return $http.put(baseURL + 'admin/Ads/Reject/' + id,null,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        approveAd: function(id,token) {
+            return $http.put(baseURL + 'admin/Ads/Approve/' + id,null,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        }
+      }
       return {
         User : User,
-        get : get
+        get : get,
+        Admin: Admin
       }
   }]) 
   .factory('UserService', ['RESTRequester', '$location',
@@ -79,7 +98,7 @@ angular.module('Ads')
           this.isLoggedIn = true;
           this.user = user;
           if(user.isAdmin) {
-            $location.path('/admin/home');
+            $location.path('/admin/ads');
           }else {
             $location.path('/');
           }
