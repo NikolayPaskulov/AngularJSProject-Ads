@@ -84,6 +84,30 @@ angular.module('Ads', ['ngRoute'])
         }]
       }
     })
+    .when('/admin/ads/delete/:ad', {
+      templateUrl: 'views/adminDeleteAd.html',
+      controller : 'AdminDelCtrl as AdDelCtrl',
+      resolve: {
+        auth: ['$location', 'UserService',
+          function($location, UserService) {
+            if(!UserService.user.isAdmin) {
+              $location.path('/login')
+            }
+        }]
+      }
+    })
+    .when('/admin/ads/edit/:ad', {
+      templateUrl: 'views/adminEditAd.html',
+      controller : 'AdminEditAdCtrl as AdEditAdCtrl',
+      resolve: {
+        auth: ['$location', 'UserService',
+          function($location, UserService) {
+            if(!UserService.user.isAdmin) {
+              $location.path('/login')
+            }
+        }]
+      }
+    })
     $routeProvider.otherwise({
       redirectTo: '/'
     });

@@ -1,4 +1,4 @@
-<div id="home-view">
+<div id="home-view" class="admin-home-view">
 	<div>
 		<select ng-model="adHomeCtrl.selectedTown" ng-change="adHomeCtrl.update()" class="softuni-select">
 			<option ng-repeat="town in adHomeCtrl.towns" ng-value="town.id" ng-bind="town.name" ng-selected="town.id == 0"></option>

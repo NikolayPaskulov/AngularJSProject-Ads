@@ -151,6 +151,10 @@ button {
 	border-bottom-right-radius: 10px;
 }
 
+.pager {
+	margin-left:22%;
+}
+
 .softuni-select {
 	border: 1px solid #111;
 	background: transparent;

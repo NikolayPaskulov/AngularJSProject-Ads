@@ -79,7 +79,11 @@ angular.module('Ads')
         approveAd: function(id,token) {
             return $http.put(baseURL + 'admin/Ads/Approve/' + id,null,
             { "headers" : { "Authorization": 'Bearer ' + token}});
-        }
+        },
+        getAdById: function(id,token) {
+           return $http.get(baseURL + 'admin/Ads/' + id,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
       }
       return {
         User : User,

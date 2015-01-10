@@ -34,16 +34,18 @@
 	padding: 5px;
 }
 #home-view > #ads-holder > div {
-	width:70%;
+	width:80%;
 	margin: 1% 2% 0 2%;
 	float:left;
-	max-width: 760px;
 	min-width: 500px;
 }
 
 #home-view > div:first-child {
-	width:100%;
-	margin-left:4%;
+	width:77%;
+	margin:5px 0 0 4%;
+	background: #a9d18e;
+	border: 1px solid #507e32;
+
 }
 
 #home-view > div:first-child > select:first-child {
@@ -53,6 +55,9 @@
 
 #home-view > div:first-child > select:nth-child(2) {
 	float:right;
-	margin-right:38%;
+	margin-right:5%;
 }
 
+.admin-home-view > div:first-child > select:nth-child(3) {
+	margin-left:16%;
+}

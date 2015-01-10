@@ -137,16 +137,23 @@
 	width:100%;
 }
 
-.admin-ad-holder  .ad-info > div > div:nth-child(2) {
+.admin-ad-holder  .ad-info > div > div:nth-child(2), 
+#delete-Ad .ad-info > div > div:nth-child(2) {
 	background: #c5e0b4;
 	border: 1px dotted #649b3f;
 }
 
-.admin-ad-holder > .ad-info > div > div > p {
+.admin-ad-holder > .ad-info > div > div > p,
+#delete-Ad  .ad-info > div > div > p {
 	padding: 10px;
 }
 
-.admin-ad-holder > div:nth-child(2) .btn {
+.admin-ad-holder > div:nth-child(2) .btn{
 	width:20%;
 	margin: 0 2% 20px 2%;
 }
+
+ #delete-Ad > div:nth-child(3) .btn {
+ 	width:35%;
+ 	margin: 0 5% 20px 5%;
+ }

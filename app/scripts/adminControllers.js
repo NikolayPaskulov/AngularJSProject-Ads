@@ -81,3 +81,20 @@ angular.module('Ads')
         	})
       }
   }])
+.controller('AdminDelCtrl', ['RESTRequester','UserService','$location','$routeParams',
+ function(RESTRequester,UserService,$location,$routeParams){
+	var self = this;
+	self.delAd;
+
+	RESTRequester.Admin.getAdById($routeParams.ad,UserService.user.access_token)
+		.success(function(data) {
+			self.delAd = data;
+		});
+
+	self.delete = function() {
+		RESTRequester.Admin.deleteAd($routeParams.ad,UserService.user.access_token)
+			.success(function(data) {
+				$location.path('/admin/ads');
+			})
+	}
+}])
