@@ -84,6 +84,22 @@ angular.module('Ads')
            return $http.get(baseURL + 'admin/Ads/' + id,
             { "headers" : { "Authorization": 'Bearer ' + token}});
         },
+        getUsers : function(filters,token) {
+          return $http.get(baseURL + 'admin/Users?PageSize='+ 1000 +'' + filters,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        getUserById: function(id, token) {
+          return $http.get(baseURL + 'admin/Users/' + id,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        getCategories : function(filters,token) {
+          return $http.get(baseURL + 'admin/Categories?PageSize='+ 1000 +'' + filters,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        getTowns: function(filters,token) {
+          return $http.get(baseURL + 'admin/Towns?PageSize='+ 1000 +'' + filters,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
       }
       return {
         User : User,

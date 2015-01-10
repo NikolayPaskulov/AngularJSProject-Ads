@@ -1,0 +1,17 @@
+<div class="admin-users-holder">
+	<table ng-table class="table">
+		<tr>
+			<td>Id</td>
+			<td colspan="3">Town</td>
+			<td>Action</td>
+		</tr>
+		<tr ng-repeat="town in adTownsCtrl.towns">
+		    <td ng-bind="town.id"></td>
+		    <td ng-bind="town.username" colspan="3"></td>
+			<td>
+				<a ng-href="#/admin/town/edit/{{town.id}}">Edit</a>
+				<a ng-href="#/admin/town/delete/{{town.id}}">Delete</a>
+			</td>
+		</tr>
+    </table>
+</div>

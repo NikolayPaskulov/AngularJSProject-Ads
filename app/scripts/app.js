@@ -86,7 +86,7 @@ angular.module('Ads', ['ngRoute'])
     })
     .when('/admin/ads/delete/:ad', {
       templateUrl: 'views/adminDeleteAd.html',
-      controller : 'AdminDelCtrl as AdDelCtrl',
+      controller : 'AdminDelCtrl as adDelCtrl',
       resolve: {
         auth: ['$location', 'UserService',
           function($location, UserService) {
@@ -98,7 +98,43 @@ angular.module('Ads', ['ngRoute'])
     })
     .when('/admin/ads/edit/:ad', {
       templateUrl: 'views/adminEditAd.html',
-      controller : 'AdminEditAdCtrl as AdEditAdCtrl',
+      controller : 'AdminEditAdCtrl as adEditAdCtrl',
+      resolve: {
+        auth: ['$location', 'UserService',
+          function($location, UserService) {
+            if(!UserService.user.isAdmin) {
+              $location.path('/login')
+            }
+        }]
+      }
+    })
+    .when('/admin/users', {
+      templateUrl: 'views/adminUsers.html',
+      controller : 'AdminUsersCtrl as adUsersCtrl',
+      resolve: {
+        auth: ['$location', 'UserService',
+          function($location, UserService) {
+            if(!UserService.user.isAdmin) {
+              $location.path('/login')
+            }
+        }]
+      }
+    })
+    .when('/admin/categories', {
+      templateUrl: 'views/adminCategories.html',
+      controller : 'AdminCategoriesCtrl as adCatCtrl',
+      resolve: {
+        auth: ['$location', 'UserService',
+          function($location, UserService) {
+            if(!UserService.user.isAdmin) {
+              $location.path('/login')
+            }
+        }]
+      }
+    })
+    .when('/admin/towns', {
+      templateUrl: 'views/adminTowns.html',
+      controller : 'AdminTownsCtrl as adTownsCtrl',
       resolve: {
         auth: ['$location', 'UserService',
           function($location, UserService) {

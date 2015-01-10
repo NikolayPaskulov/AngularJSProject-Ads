@@ -1,0 +1,21 @@
+<div class="admin-users-holder">
+	<table ng-table class="table">
+		<tr>
+			<td ng-click="adUsersCtrl.sortBy('username')">Username</td>
+			<td ng-click="adUsersCtrl.sortBy('name')">Name</td>
+			<td ng-click="adUsersCtrl.sortBy('email')">Email</td>
+			<td ng-click="adUsersCtrl.sortBy('phoneNumber')">Phone</td>
+			<td>Action</td>
+		</tr>
+		<tr ng-repeat="user in adUsersCtrl.users">
+		    <td ng-bind="user.username"></td>
+		    <td ng-bind="user.name"></td>
+			<td ng-bind="user.email"></td>
+			<td ng-bind="user.phoneNumber"></td>
+			<td>
+				<a ng-href="#/admin/user/edit/{{user.id}}">Edit</a>
+				<a ng-href="#/admin/user/delete/{{user.id}}">Delete</a>
+			</td>
+		</tr>
+    </table>
+</div>

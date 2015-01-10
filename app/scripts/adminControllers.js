@@ -98,3 +98,41 @@ angular.module('Ads')
 			})
 	}
 }])
+.controller('AdminUsersCtrl', ['RESTRequester', 'UserService',
+  function(RESTRequester, UserService){
+  var self = this;
+  self.users = [];
+
+  RESTRequester.Admin.getUsers('', UserService.user.access_token)
+    .success(function(data) {
+      self.users = data.users;
+    })
+
+    self.sortBy = function(data) {
+      self.users.sort(function(a,b) {
+        if(a[data] < b[data]) return 1;
+        if(a[data] == b[data]) return 0;
+        if(a[data] > b[data]) return -1;
+      })
+    }
+}])
+.controller('AdminCategoriesCtrl', ['RESTRequester', 'UserService',
+  function(RESTRequester, UserService){
+  var self = this;
+  self.categories = [];
+
+  RESTRequester.Admin.getCategories('', UserService.user.access_token)
+    .success(function(data) {
+      self.categories = data.categories;
+    })
+}])
+.controller('AdminTownsCtrl', ['RESTRequester', 'UserService',
+  function(RESTRequester, UserService){
+  var self = this;
+  self.towns = [];
+
+  RESTRequester.Admin.getTowns('', UserService.user.access_token)
+    .success(function(data) {
+      self.towns = data.towns;
+    })
+}])

@@ -2,41 +2,41 @@
     <div><div>Confirm Deleting Ad?</div></div>
     <div class="ad-holder">
         <div class="ad-header">
-            <div ng-bind="AdDelCtrl.delAd.title"></div>
-            <div ng-bind="AdDelCtrl.isoToDate(AdDelCtrl.delAd.date)"></div>
+            <div ng-bind="adDelCtrl.delAd.title"></div>
+            <div ng-bind="adDelCtrl.isoToDate(adDelCtrl.delAd.date)"></div>
         </div>
         <div class="ad-body">
             <div class="img-conteiner">
-                <img ng-src="{{AdDelCtrl.delAd.imageDataUrl || 'img/NoImgAvailable.png'}}" >
+                <img ng-src="{{adDelCtrl.delAd.imageDataUrl || 'img/NoImgAvailable.png'}}" >
             </div>
             <div class="ad-info">
-                <div class="ad-text"><p ng-bind="AdDelCtrl.delAd.text"></p></div>
+                <div class="ad-text"><p ng-bind="adDelCtrl.delAd.text"></p></div>
                 <div class="ad-name">
                     <div>Category:</div>
-                    <div><p ng-bind="AdDelCtrl.delAd.categoryName || '&nbsp;'"></p></div>
+                    <div><p ng-bind="adDelCtrl.delAd.categoryName || '&nbsp;'"></p></div>
                 </div>
                 <div class="ad-email">
                     <div>Town:</div>
-                    <div><p ng-bind="AdDelCtrl.delAd.townName || '&nbsp;'"></p></div>
+                    <div><p ng-bind="adDelCtrl.delAd.townName || '&nbsp;'"></p></div>
                 </div>
                  <div>
                     <div>Username:</div>
-                    <div><p ng-bind="AdDelCtrl.delAd.ownerUsername || '&nbsp;'"></p></div>
+                    <div><p ng-bind="adDelCtrl.delAd.ownerUsername || '&nbsp;'"></p></div>
                 </div>
                 <div>
                     <div>Name:</div>
-                    <div><p ng-bind="AdDelCtrl.delAd.ownerName || '&nbsp;'"></p></div>
+                    <div><p ng-bind="adDelCtrl.delAd.ownerName || '&nbsp;'"></p></div>
                 </div>
                 <div>
                     <div>Email:</div>
-                    <div><p ng-bind="AdDelCtrl.delAd.ownerEmail || '&nbsp;'"></p></div>
+                    <div><p ng-bind="adDelCtrl.delAd.ownerEmail || '&nbsp;'"></p></div>
                 </div>
                 <div>
                     <div>Phone:</div>
-                    <div><p ng-bind="AdDelCtrl.delAd.ownerPhone || '&nbsp;'"></p></div>
+                    <div><p ng-bind="adDelCtrl.delAd.ownerPhone || '&nbsp;'"></p></div>
                 </div>
             </div>
         </div>
     </div>
-    <div><a class="btn" ng-click="AdDelCtrl.delete()">Delete</a><a class="btn" href="#  /admin/ads">Cancel</a></div>
+    <div><a class="btn" ng-click="adDelCtrl.delete()">Delete</a><a class="btn" href="#  /admin/ads">Cancel</a></div>
 </div>

@@ -1,0 +1,17 @@
+<div class="admin-users-holder">
+	<table ng-table class="table">
+		<tr>
+			<td>Id</td>
+			<td colspan="3">Name</td>
+			<td>Email</td>
+		</tr>
+		<tr ng-repeat="category in adCatCtrl.categories">
+		    <td ng-bind="category.id"></td>
+		    <td ng-bind="category.username" colspan="3"></td>
+			<td>
+				<a ng-href="#/admin/category/edit/{{category.id}}">Edit</a>
+				<a ng-href="#/admin/category/delete/{{category.id}}">Delete</a>
+			</td>
+		</tr>
+    </table>
+</div>

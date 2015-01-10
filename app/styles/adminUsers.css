@@ -1,0 +1,22 @@
+.admin-users-holder {
+	width:80%;
+	margin: 30px 0 10px 4%;
+}
+
+
+table {
+	border-collapse: separate;
+	border-spacing: 3px;
+}
+
+td {
+	background: #a9d18e;
+	border: 1px solid #507e32;
+	font-size:18px;
+	padding: 5px;
+}
+
+tr:first-child td {
+	background: #70ad47;
+	text-align: center;
+}
