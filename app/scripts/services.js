@@ -100,6 +100,14 @@ angular.module('Ads')
           return $http.get(baseURL + 'admin/Towns?PageSize='+ 1000 +'' + filters,
             { "headers" : { "Authorization": 'Bearer ' + token}});
         },
+        createTown: function(data, token) {
+          return $http.post(baseURL + 'admin/Towns',data,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        createCategory: function(data, token) {
+            return $http.post(baseURL + 'admin/Categories',data,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        }
       }
       return {
         User : User,
@@ -152,4 +160,26 @@ angular.module('Ads')
     }
 
     return msg;
+  }])
+  .factory('HelperFuncs', [function() {
+    function sortBy(arr,param,acc) {
+      var curArr = arr;
+      if(acc) {
+        curArr.sort(function(a,b) {
+          if(a[param] > b[param]) return 1;
+          if(a[param] == b[param]) return 0;
+          if(a[param] < b[param]) return -1;
+        })
+      } else {
+        curArr.sort(function(a,b) {
+          if(a[param] < b[param]) return 1;
+          if(a[param] == b[param]) return 0;
+          if(a[param] > b[param]) return -1;
+        })
+      }
+      return curArr;
+    }
+    return {
+      sortBy : sortBy
+    }
   }])

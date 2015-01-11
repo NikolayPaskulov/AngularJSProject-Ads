@@ -1,6 +1,6 @@
 angular.module('Ads')
-.controller('AdHomeCtrl', ['RESTRequester','UserService','$route',
-    function(RESTRequester, UserService, $route){
+.controller('AdHomeCtrl', ['RESTRequester','UserService','$route','NOTY',
+    function(RESTRequester, UserService, $route, NOTY){
       var self = this,
           filter,
           currentPage = 1;
@@ -67,20 +67,22 @@ angular.module('Ads')
       self.approve = function(id) {
       	RESTRequester.Admin.approveAd(id,UserService.user.access_token)
         	.success(function(data) {
+              NOTY.infoMsg('Ad is aprroved!')
           		$route.reload()
         	})
         	.error(function(data) {
-
+            NOTY.errorMsg('Something goes WRONG!')
         	})
       }
 
       self.reject = function(id) {
       	RESTRequester.Admin.rejectAd(id,UserService.user.access_token)
         	.success(function(data) {
+               NOTY.infoMsg('Ad is rejected!')
           		$route.reload()
         	})
         	.error(function(data) {
-
+            NOTY.errorMsg('Something goes WRONG!')
         	})
       }
   }])
@@ -97,12 +99,16 @@ angular.module('Ads')
 	self.delete = function() {
 		RESTRequester.Admin.deleteAd($routeParams.ad,UserService.user.access_token)
 			.success(function(data) {
+        NOTY.infoMsg('Ad is deleted!')
 				$location.path('/admin/ads');
 			})
+      .error(function(data) {
+            NOTY.errorMsg('Something goes WRONG!')
+      })
 	}
 }])
-.controller('AdminUsersCtrl', ['RESTRequester', 'UserService',
-  function(RESTRequester, UserService){
+.controller('AdminUsersCtrl', ['RESTRequester', 'UserService', 'HelperFuncs',
+  function(RESTRequester, UserService, HelperFuncs){
   var self = this,
       sorted = {username : false, name : false, email: false, phoneNumber: false}
   self.users = [];
@@ -114,24 +120,12 @@ angular.module('Ads')
     })
 
     self.sortBy = function(data) {
-      if(sorted[data]){
-        self.users.sort(function(a,b) {
-          if(a[data] < b[data]) return 1;
-          if(a[data] == b[data]) return 0;
-          if(a[data] > b[data]) return -1;
-        })
-      } else {
-        self.users.sort(function(a,b) {
-          if(a[data] > b[data]) return 1;
-          if(a[data] == b[data]) return 0;
-          if(a[data] < b[data]) return -1;
-        })
-      }
-        sorted[data] = !sorted[data];
+      self.users = HelperFuncs.sortBy(self.users, data, sorted[data]);
+      sorted[data] = !sorted[data];
     }
 }])
-.controller('AdminCategoriesCtrl', ['RESTRequester', 'UserService',
-  function(RESTRequester, UserService){
+.controller('AdminCategoriesCtrl', ['RESTRequester', 'UserService','HelperFuncs',
+  function(RESTRequester, UserService, HelperFuncs){
   var self = this,
       sorted = {id : false, username : false}
   self.categories = [];
@@ -142,24 +136,12 @@ angular.module('Ads')
     })
 
   self.sortBy = function(data) {
-    if(sorted[data]){
-      self.categories.sort(function(a,b) {
-        if(a[data] < b[data]) return 1;
-        if(a[data] == b[data]) return 0;
-        if(a[data] > b[data]) return -1;
-      })
-    } else {
-      self.categories.sort(function(a,b) {
-        if(a[data] > b[data]) return 1;
-        if(a[data] == b[data]) return 0;
-        if(a[data] < b[data]) return -1;
-      })
-    }
+      self.categories = HelperFuncs.sortBy(self.categories, data, sorted[data]);
       sorted[data] = !sorted[data];
   }
 }])
-.controller('AdminTownsCtrl', ['RESTRequester', 'UserService',
-  function(RESTRequester, UserService){
+.controller('AdminTownsCtrl', ['RESTRequester', 'UserService','HelperFuncs',
+  function(RESTRequester, UserService, HelperFuncs){
   var self = this,
       sorted = {id : false, username : false}
   self.towns = [];
@@ -170,19 +152,47 @@ angular.module('Ads')
     })
 
   self.sortBy = function(data) {
-    if(sorted[data]){
-      self.towns.sort(function(a,b) {
-        if(a[data] < b[data]) return 1;
-        if(a[data] == b[data]) return 0;
-        if(a[data] > b[data]) return -1;
-      })
-    } else {
-      self.towns.sort(function(a,b) {
-        if(a[data] > b[data]) return 1;
-        if(a[data] == b[data]) return 0;
-        if(a[data] < b[data]) return -1;
-      })
-    }
+      self.towns = HelperFuncs.sortBy(self.towns, data, sorted[data]);
       sorted[data] = !sorted[data];
+  }
+}])
+.controller('AdminTownCreateCtrl', ['RESTRequester','UserService', 'NOTY','$location',
+  function(RESTRequester, UserService, NOTY,$location){
+  var self = this;
+  self.town = {};
+
+  self.create = function() {
+    if(!self.town.name || self.town.name == '') {
+      NOTY.errorMsg('Enter town name!');
+      return;
+    }
+    RESTRequester.Admin.createTown(self.town, UserService.user.access_token)
+      .success(function(data) {
+        NOTY.infoMsg('Town was successfully created!');
+        $location.path('/admin/towns')
+      })
+      .error(function(data) {
+        NOTY.errorMsg('Something goes WRONG');
+      })
+  }
+}])
+.controller('AdminCatCreateCtrl', ['RESTRequester','UserService', 'NOTY','$location',
+  function(RESTRequester, UserService, NOTY,$location){
+  var self = this;
+  self.category = {};
+
+  self.create = function() {
+    if(!self.category.name || self.category.name == '') {
+      NOTY.errorMsg('Enter category name!');
+      return;
+    }
+    RESTRequester.Admin.createCategory(self.category, UserService.user.access_token)
+      .success(function(data) {
+        NOTY.infoMsg('Category was successfully created!');
+        $location.path('/admin/categories')
+      })
+      .error(function(data) {
+        NOTY.errorMsg('Something goes WRONG');
+      })
   }
 }])

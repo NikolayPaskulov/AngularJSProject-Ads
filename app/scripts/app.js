@@ -144,6 +144,30 @@ angular.module('Ads', ['ngRoute'])
         }]
       }
     })
+    .when('/admin/town/create', {
+      templateUrl: 'views/adminTownCreate.html',
+      controller : 'AdminTownCreateCtrl as adTownCreateCtrl',
+      resolve: {
+        auth: ['$location', 'UserService',
+          function($location, UserService) {
+            if(!UserService.user.isAdmin) {
+              $location.path('/login')
+            }
+        }]
+      }
+    })
+    .when('/admin/category/create', {
+      templateUrl: 'views/adminCategoryCreate.html',
+      controller : 'AdminCatCreateCtrl as adCatCreateCtrl',
+      resolve: {
+        auth: ['$location', 'UserService',
+          function($location, UserService) {
+            if(!UserService.user.isAdmin) {
+              $location.path('/login')
+            }
+        }]
+      }
+    })
     $routeProvider.otherwise({
       redirectTo: '/'
     });
