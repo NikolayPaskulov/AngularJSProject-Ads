@@ -1,8 +1,8 @@
 <div class="admin-users-holder">
 	<table ng-table class="table">
 		<tr>
-			<td>Id</td>
-			<td colspan="3">Town</td>
+			<td ng-click="adTownsCtrl.sortBy('id')">Id</td>
+			<td colspan="3" ng-click="adTownsCtrl.sortBy('username')">Town</td>
 			<td>Action</td>
 		</tr>
 		<tr ng-repeat="town in adTownsCtrl.towns">

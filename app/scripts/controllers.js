@@ -1,15 +1,19 @@
 angular.module('Ads')
-  .controller('MainCtrl', ['UserService', '$rootScope',
-   function(UserService, $rootScope){
+  .controller('MainCtrl', ['UserService', '$rootScope','NOTY',
+   function(UserService, $rootScope, NOTY){
     var self = this;
-    self.user = UserService;
+    self.user = UserService.user;
+
 
     self.logout = function() {
       UserService.logout();
+      self.user =  {isLoggedIn: false};
+      NOTY.infoMsg('Successfully logout!');
     }
 
     $rootScope.$on('userLogin', function(event,user) {
-      self.user = user;
+       self.user = user;
+       self.user.isLoggedIn = true;
     })
   }])
   .controller('HomeCtrl', ['RESTRequester',
@@ -52,6 +56,7 @@ angular.module('Ads')
       RESTRequester.get.ads(((filter) ? filter : '') + '&StartPage=' + currentPage)
         .success(function(data) {
           self.ads = data.ads;
+          fillPager(data.numPages);
         })
       }
 
@@ -60,20 +65,22 @@ angular.module('Ads')
         filter += (self.selectedCat && self.selectedCat != 0) ? '&CategoryId=' +  self.selectedCat : '';
         RESTRequester.get.ads(filter)
         .success(function(data) {
-          self.ads = data.ads;
           fillPager(data.numPages);
+          self.ads = data.ads;
         })
       }
 
       function fillPager(num) {
         self.pages = [];
-        for (var i = 1; i <= num; i++) {
-          self.pages.push(i)
-        }
+        var len = ((num - currentPage) > 7) ? currentPage + 7 : currentPage + (7 - num - currentPage);
+        var start = ((num - currentPage) > 7) ? currentPage : num - currentPage;
+        for (var i = start; i < len; i++) {
+          self.pages.push(i);
+        };
       }
   }])
-  .controller('LoginCtrl', ['UserService','RESTRequester','$rootScope',
-    function(UserService, RESTRequester, $rootScope){
+  .controller('LoginCtrl', ['UserService','RESTRequester','$rootScope','NOTY',
+    function(UserService, RESTRequester, $rootScope, NOTY){
       var self = this;
       self.user = {};
 
@@ -82,12 +89,16 @@ angular.module('Ads')
           .success(function(data) {
             $rootScope.$broadcast('userLogin', data);
             UserService.login(data);
+            NOTY.infoMsg('Successfully login!')
+          })
+          .error(function(data){
+            NOTY.errorMsg(data.error_description);
           })
       }
 
   }])
-  .controller('RegisterCtrl', ['UserService','RESTRequester',
-    function(UserService, RESTRequester){
+  .controller('RegisterCtrl', ['UserService','RESTRequester','NOTY','$rootScope',
+    function(UserService, RESTRequester, NOTY, $rootScope){
       var self = this;
       self.user = {};
       self.towns = [{ id : 0, name : '(None)'}];
@@ -102,15 +113,17 @@ angular.module('Ads')
         if(self.user.townId == 0) delete self.user.townId
         RESTRequester.User.register(self.user)
           .success(function(data) {
+            $rootScope.$broadcast('userLogin', data);
             UserService.login(data)
+            NOTY.infoMsg('Successfully register. Welcome!')
           })
           .error(function(data) {
-            //NOTY .. TODO!
+            NOTY.errorMsg(data.modelState[""][0])
           });
       }
   }])
-  .controller('UserAds', ['RESTRequester','UserService', '$route','$location',
-   function(RESTRequester, UserService,$route, $location){
+  .controller('UserAds', ['RESTRequester','UserService', '$route','$location','NOTY',
+   function(RESTRequester, UserService,$route, $location, NOTY){
     var self = this,
         filter,
         currentPage = 1;
@@ -127,21 +140,22 @@ angular.module('Ads')
     self.deactivate = function(id) {
       RESTRequester.User.deactivateAd(id,UserService.user.access_token)
         .success(function(data) {
+          NOTY.infoMsg('Ad is deactivated!')
           $route.reload()
-          //TODO NOTY
         })
         .error(function(data) {
-          //TODO NOTY
+          NOTY.errorMsg('Something goes WRONG!')
         })
     }
 
     self.publishAgain = function(id) {
       RESTRequester.User.publishAgainAd(id, UserService.user.access_token)
         .success(function(data) {
+          NOTY.infoMsg('Your Ad is published again!')
           $route.reload()
         })
         .error(function(data) {
-
+          NOTY.errorMsg('Something goes WRONG!')
         })
     }
 
@@ -163,19 +177,22 @@ angular.module('Ads')
       RESTRequester.get.ads(((filter) ? filter : '') + '&StartPage=' + currentPage)
         .success(function(data) {
           self.ads = data.ads;
+          fillPager(data.numPages);
         })
       }
 
-    function fillPager(num) {
+      function fillPager(num) {
         self.pages = [];
-        for (var i = 1; i <= num; i++) {
-          self.pages.push(i)
-        }
+        var len = ((num - currentPage) > 7) ? currentPage + 7 : currentPage + (7 - num - currentPage);
+        var start = ((num - currentPage) > 7) ? currentPage : num - currentPage;
+        for (var i = start; i < len; i++) {
+          self.pages.push(i);
+        };
       }
 
   }])
-  .controller('NewAdCtrl', ['RESTRequester', 'UserService', '$scope', '$location',
-    function(RESTRequester, UserService, $scope, $location){
+  .controller('NewAdCtrl', ['RESTRequester', 'UserService', '$scope', '$location', 'NOTY',
+    function(RESTRequester, UserService, $scope, $location, NOTY){
       var self = this;
       self.adData = {townId: null, categoryId: null, imageDataUrl: null};
       self.towns = [{ id : null, name : '(None)'}];
@@ -216,16 +233,16 @@ angular.module('Ads')
           console.log(self.adData)
           RESTRequester.User.publishAd(self.adData, UserService.user.access_token)
             .success(function(data) {
+              NOTY.infoMsg('Ad is succesfully published!')
               $location.path('/user/ads')
-              //TODO NOTY
             })
             .error(function(data) {
-              //TODO NOTY
+              NOTY.infoMsg('Something goes WRONG!')
             })
         };
   }])
-  .controller('DeleteAdCtrl', ['RESTRequester', 'UserService','$location','$routeParams',
-    function(RESTRequester,UserService, $location,$routeParams){
+  .controller('DeleteAdCtrl', ['RESTRequester', 'UserService','$location','$routeParams', 'NOTY',
+    function(RESTRequester,UserService, $location,$routeParams, NOTY){
       var self = this;
       self.delAd;
 
@@ -243,14 +260,15 @@ angular.module('Ads')
         console.log(UserService.user.access_token)
         RESTRequester.User.deleteAd(self.delAd.id, UserService.user.access_token)
           .success(function(data) {
+            NOTY.infoMsg('Ad is deleted!')
             $location.path('/user/ads')
           })
           .error(function(data) {
-
+              NOTY.infoMsg('Something goes WRONG!')
           })
       }
   }])
-  .controller('EditUserCtrl', ['RESTRequester','UserService', '$location',
+  .controller('EditUserCtrl', ['RESTRequester','UserService', '$location', 'NOTY',
     function(RESTRequester, UserService,$location){
       var self = this;
       self.user;
@@ -271,28 +289,31 @@ angular.module('Ads')
           if(self.user.townId == 0) self.user.townId = null;
           RESTRequester.User.editUser(self.user,UserService.user.access_token)
             .success(function(data) {
+              NOTY.infoMsg('User is updated!')
               $location.path('/user/ads');
             })
             .error(function(data) {
-              console.log(data)
+              NOTY.errorMsg('Something goes WRONG!')
             })
         }
 
         self.changePassword = function() {
           if(self.changePass.newPassword != self.changePass.confirmPassword){
+            NOTY.errorMsg('Passwords dont match!')
             return;
           }
           RESTRequester.User.changePassword(self.changePass,UserService.user.access_token)
             .success(function(data) {
+              NOTY.infoMsg('Successfully changed user password!');
               $location.path('/user/ads')
             })
             .error(function(data) {
-
+              NOTY.errorMsg('Something goes Wrong!');
             })
         }
   }])
-  .controller('EditAdCtrl', ['RESTRequester','UserService','$location','$routeParams','$scope',
-   function(RESTRequester, UserService, $location, $routeParams,$scope){
+  .controller('EditAdCtrl', ['RESTRequester','UserService','$location','$routeParams','$scope','NOTY',
+   function(RESTRequester, UserService, $location, $routeParams,$scope, NOTY){
       var self = this;
       self.editAd;
       self.towns = [{ id : 0, name : '(None)'}];
@@ -302,7 +323,6 @@ angular.module('Ads')
     RESTRequester.User.getAdById($routeParams.ad,UserService.user.access_token)
       .success(function(data) {
         self.editAd = data;
-        console.log(data)
       })
 
       //GET ALL ADS
@@ -346,10 +366,11 @@ angular.module('Ads')
         self.edit = function() {
           RESTRequester.User.editAd($routeParams.ad, self.editAd, UserService.user.access_token)
             .success(function(data){
+              NOTY.infoMsg('Ad is successfully edited!')
               $location.path('/user/ads');
             })
             .error(function(data) {
-
+              NOTY.errorMsg('Something goes WRONG');
             })
         }
   }])

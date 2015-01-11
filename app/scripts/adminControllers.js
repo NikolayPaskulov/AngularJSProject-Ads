@@ -40,6 +40,7 @@ angular.module('Ads')
       RESTRequester.get.ads(((filter) ? filter : '') + '&StartPage=' + currentPage)
         .success(function(data) {
           self.ads = data.ads;
+          fillPager(data.numPages);
         })
       }
 
@@ -56,9 +57,11 @@ angular.module('Ads')
 
       function fillPager(num) {
         self.pages = [];
-        for (var i = 1; i <= num; i++) {
-          self.pages.push(i)
-        }
+        var len = ((num - currentPage) > 7) ? currentPage + 7 : currentPage + (7 - num - currentPage);
+        var start = ((num - currentPage) > 7) ? currentPage : num - currentPage;
+        for (var i = start; i < len; i++) {
+          self.pages.push(i);
+        };
       }
 
       self.approve = function(id) {
@@ -100,8 +103,10 @@ angular.module('Ads')
 }])
 .controller('AdminUsersCtrl', ['RESTRequester', 'UserService',
   function(RESTRequester, UserService){
-  var self = this;
+  var self = this,
+      sorted = {username : false, name : false, email: false, phoneNumber: false}
   self.users = [];
+
 
   RESTRequester.Admin.getUsers('', UserService.user.access_token)
     .success(function(data) {
@@ -109,30 +114,75 @@ angular.module('Ads')
     })
 
     self.sortBy = function(data) {
-      self.users.sort(function(a,b) {
-        if(a[data] < b[data]) return 1;
-        if(a[data] == b[data]) return 0;
-        if(a[data] > b[data]) return -1;
-      })
+      if(sorted[data]){
+        self.users.sort(function(a,b) {
+          if(a[data] < b[data]) return 1;
+          if(a[data] == b[data]) return 0;
+          if(a[data] > b[data]) return -1;
+        })
+      } else {
+        self.users.sort(function(a,b) {
+          if(a[data] > b[data]) return 1;
+          if(a[data] == b[data]) return 0;
+          if(a[data] < b[data]) return -1;
+        })
+      }
+        sorted[data] = !sorted[data];
     }
 }])
 .controller('AdminCategoriesCtrl', ['RESTRequester', 'UserService',
   function(RESTRequester, UserService){
-  var self = this;
+  var self = this,
+      sorted = {id : false, username : false}
   self.categories = [];
 
   RESTRequester.Admin.getCategories('', UserService.user.access_token)
     .success(function(data) {
       self.categories = data.categories;
     })
+
+  self.sortBy = function(data) {
+    if(sorted[data]){
+      self.categories.sort(function(a,b) {
+        if(a[data] < b[data]) return 1;
+        if(a[data] == b[data]) return 0;
+        if(a[data] > b[data]) return -1;
+      })
+    } else {
+      self.categories.sort(function(a,b) {
+        if(a[data] > b[data]) return 1;
+        if(a[data] == b[data]) return 0;
+        if(a[data] < b[data]) return -1;
+      })
+    }
+      sorted[data] = !sorted[data];
+  }
 }])
 .controller('AdminTownsCtrl', ['RESTRequester', 'UserService',
   function(RESTRequester, UserService){
-  var self = this;
+  var self = this,
+      sorted = {id : false, username : false}
   self.towns = [];
 
   RESTRequester.Admin.getTowns('', UserService.user.access_token)
     .success(function(data) {
       self.towns = data.towns;
     })
+
+  self.sortBy = function(data) {
+    if(sorted[data]){
+      self.towns.sort(function(a,b) {
+        if(a[data] < b[data]) return 1;
+        if(a[data] == b[data]) return 0;
+        if(a[data] > b[data]) return -1;
+      })
+    } else {
+      self.towns.sort(function(a,b) {
+        if(a[data] > b[data]) return 1;
+        if(a[data] == b[data]) return 0;
+        if(a[data] < b[data]) return -1;
+      })
+    }
+      sorted[data] = !sorted[data];
+  }
 }])

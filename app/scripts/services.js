@@ -1,7 +1,7 @@
 angular.module('Ads')
   .factory('RESTRequester', ['$http',
     function($http) {
-      var baseURL = 'http://localhost:1337/api/',
+      var baseURL = 'http://softuni-ads.azurewebsites.net/api/',
           pageSize = 4;
       var User = {
         login : function(user) {
@@ -110,13 +110,11 @@ angular.module('Ads')
   .factory('UserService', ['RESTRequester', '$location',
     function(RESTRequester, $location) {
       var service = {
-        isLoggedIn: false,
-        user : {},
+        user : {isLoggedIn: false},
 
         login: function(user) {
-          console.log(user)
-          this.isLoggedIn = true;
           this.user = user;
+          this.user.isLoggedIn = true;
           if(user.isAdmin) {
             $location.path('/admin/ads');
           }else {
@@ -125,10 +123,33 @@ angular.module('Ads')
 
         },
         logout: function() {
-          this.isLoggedIn = false;
-          this.user = {};
+          this.user = {isLoggedIn: false};
           $location.path('/');
         }
       };
       return service;
+  }])
+  .factory('NOTY', [function() {
+    var msg = {
+      infoMsg : function(msg) {
+         var n = noty({
+            text: msg,
+            type: 'info',
+            layout: 'topCenter',
+            timeout: 3000
+        })
+         return n;
+      },
+      errorMsg : function(msg) {
+         var n = noty({
+            text: msg,
+            type: 'error',
+            layout: 'topCenter',
+            timeout: 3000
+        });
+         return n;
+      }
+    }
+
+    return msg;
   }])

@@ -1,9 +1,9 @@
 <div class="admin-users-holder">
 	<table ng-table class="table">
 		<tr>
-			<td>Id</td>
-			<td colspan="3">Name</td>
-			<td>Email</td>
+			<td ng-click="adCatCtrl.sortBy('id')">Id</td>
+			<td colspan="3" ng-click="adCatCtrl.sortBy('username')">Name</td>
+			<td>Actions</td>
 		</tr>
 		<tr ng-repeat="category in adCatCtrl.categories">
 		    <td ng-bind="category.id"></td>

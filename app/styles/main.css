@@ -33,12 +33,10 @@ button {
 #main-wrapper > header > div:nth-child(2) {
 	float:right;
 	padding-right:80px;
-	width:15%;
 }
 
 #main-wrapper > header > div:nth-child(2) > p,
 #main-wrapper > header > div:nth-child(2) > button {
-	width:50%;
 	display:inline-block;
 	float:left;
 	margin: 6px 0 6px 0;
