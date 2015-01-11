@@ -57,7 +57,7 @@ angular.module('Ads')
 
       function fillPager(num) {
         self.pages = [];
-        var len = ((num - currentPage) > 7) ? currentPage + 7 : currentPage + (7 - num - currentPage);
+        var len = ((num - currentPage) > 7) ? currentPage + 7 :  num;
         var start = ((num - currentPage) > 7) ? currentPage : num - currentPage;
         for (var i = start; i < len; i++) {
           self.pages.push(i);

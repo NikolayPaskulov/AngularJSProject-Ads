@@ -156,6 +156,30 @@ angular.module('Ads', ['ngRoute'])
         }]
       }
     })
+    .when('/admin/town/edit', {
+      templateUrl: 'views/adminTownEdit.html',
+      controller : 'AdminTownEditCtrl as adTownEditCtrl',
+      resolve: {
+        auth: ['$location', 'UserService',
+          function($location, UserService) {
+            if(!UserService.user.isAdmin) {
+              $location.path('/login')
+            }
+        }]
+      }
+    })
+    .when('/admin/town/delete', {
+      templateUrl: 'views/adminTownDel.html',
+      controller : 'AdminTownDelCtrl as adTownDelCtrl',
+      resolve: {
+        auth: ['$location', 'UserService',
+          function($location, UserService) {
+            if(!UserService.user.isAdmin) {
+              $location.path('/login')
+            }
+        }]
+      }
+    })
     .when('/admin/category/create', {
       templateUrl: 'views/adminCategoryCreate.html',
       controller : 'AdminCatCreateCtrl as adCatCreateCtrl',

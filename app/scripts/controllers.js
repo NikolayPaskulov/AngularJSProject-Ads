@@ -72,7 +72,7 @@ angular.module('Ads')
 
       function fillPager(num) {
         self.pages = [];
-        var len = ((num - currentPage) > 7) ? currentPage + 7 : currentPage + (7 - num - currentPage);
+        var len = ((num - currentPage) > 7) ? currentPage + 7 : num;
         var start = ((num - currentPage) > 7) ? currentPage : num - currentPage;
         for (var i = start; i < len; i++) {
           self.pages.push(i);
@@ -183,7 +183,7 @@ angular.module('Ads')
 
       function fillPager(num) {
         self.pages = [];
-        var len = ((num - currentPage) > 7) ? currentPage + 7 : currentPage + (7 - num - currentPage);
+        var len = ((num - currentPage) > 7) ? currentPage + 7 : num;
         var start = ((num - currentPage) > 7) ? currentPage : num - currentPage;
         for (var i = start; i < len; i++) {
           self.pages.push(i);
@@ -222,10 +222,12 @@ angular.module('Ads')
                 reader.onload = function() {
                     self.adData.imageDataUrl = reader.result;
                     $(".image-box > img").attr('src', reader.result);
+                    $('#uploadFile').val($('#uploadBtn').val());
                 };
                 reader.readAsDataURL(file);
             } else {
                $(".image-box > img").attr('src', 'img/NoImgAvailable.png')
+               $('#uploadFile').val('');
             }
         };
 

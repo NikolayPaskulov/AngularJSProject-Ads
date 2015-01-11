@@ -104,8 +104,24 @@ angular.module('Ads')
           return $http.post(baseURL + 'admin/Towns',data,
             { "headers" : { "Authorization": 'Bearer ' + token}});
         },
+        deleteTown: function(id,token) {
+            return $http.delete(baseURL + 'admin/Towns/' + id,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        editTown: function(id,data,token) {
+            return $http.put(baseURL + 'admin/Towns/' + id,data,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
         createCategory: function(data, token) {
             return $http.post(baseURL + 'admin/Categories',data,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        deleteCategory: function(id,token) {
+            return $http.delete(baseURL + 'admin/Categories/' + id,
+            { "headers" : { "Authorization": 'Bearer ' + token}});
+        },
+        editCategory: function(id,data,token) {
+            return $http.put(baseURL + 'admin/Categories/' + id,data,
             { "headers" : { "Authorization": 'Bearer ' + token}});
         }
       }

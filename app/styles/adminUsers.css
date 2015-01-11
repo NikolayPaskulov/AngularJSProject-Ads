@@ -20,3 +20,29 @@ tr:first-child td {
 	background: #70ad47;
 	text-align: center;
 }
+
+.admin-create {
+	width:25%;
+	background: #a9d18e;
+	border: 1px solid #507e32;
+	border-radius: 10px;
+	margin: 30px 0 30px 24%;
+}
+
+.admin-create > div {
+	width:100%;
+}
+
+.admin-create > div > label, .admin-create > div > input {
+	width:90%;
+	margin: 0 5% 0 5%;
+	padding: 5px;
+	display:inline-block;
+}
+
+.admin-create > div > button {
+	width:70%;
+	margin-left:15%;
+}
+
+
